@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Zerekat — Zeyad Erekat">
+<meta property="og:description" content="Dubai-based videographer, photographer and editor. MrBeast, adidas, Porsche, Iniesta and more.">
+<meta property="og:image" content="m/favela-05.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Zerekat</title>
+<meta name="description" content="Zeyad Erekat (Zerekat) — Dubai-based videographer, photographer and editor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: a camera viewfinder you scroll through — full-bleed film hero, then "scenes" of work, each a reel strip of video + stills. Single dark look by choice. */
+:root{
+  --bg:#0e0f12; --panel:#17181d; --tile:#0b0b0d; --line:#26272d;
+  --fg:#f2efe9; --muted:#a9a6a0; --red:#ff3b3b; --amber:#ff9a1f;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"Space Mono","DejaVu Sans Mono",Menlo,monospace;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gutR:max(16px, env(safe-area-inset-right, 0px));
+  --wrap:1280px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--gut);padding-right:var(--gutR)}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:.92;letter-spacing:-.02em}
+.dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--red);vertical-align:.02em;margin-right:.45em;animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:.15}}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{font-family:var(--display);font-size:22px;text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--red)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--fg)}
+.nav .book{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:var(--red);color:#0e0f12;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}
+@media (max-width:760px){.nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:clamp(560px,86vh,860px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;filter:grayscale(.15) contrast(1.05)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(14,15,18,.35) 0%,rgba(14,15,18,.15) 40%,rgba(14,15,18,.92) 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);pointer-events:none}
+.vf{position:absolute;inset:clamp(14px,3vw,34px);pointer-events:none}
+.vf i{position:absolute;width:34px;height:34px;border:2px solid var(--fg);opacity:.85}
+.vf i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.vf i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.vf i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.vf i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.hud{position:absolute;top:clamp(30px,5vw,58px);left:0;right:0;display:flex;justify-content:space-between;padding-left:calc(var(--gut) + 24px);padding-right:calc(var(--gutR) + 24px);font-family:var(--mono);font-size:13px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.hero .wrap{width:100%;padding-block:0 clamp(48px,7vw,90px)}
+.hero h1{font-size:clamp(68px,17vw,250px);letter-spacing:-.045em;line-height:.82}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-top:22px}
+.hero p{max-width:34ch;font-size:clamp(17px,1.6vw,21px);margin:0}
+.tag{font-family:var(--mono);color:var(--amber);font-size:13px;letter-spacing:.14em;margin-bottom:10px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:14px 20px;border-radius:999px;border:1.5px solid var(--fg);background:transparent;color:var(--fg);cursor:pointer}
+.btn.solid{background:var(--red);border-color:var(--red);color:#0e0f12}
+.btn:hover{transform:translateY(-1px)}
+
+/* MARQUEE */
+.marquee{background:var(--red);color:#0e0f12;overflow:hidden;white-space:nowrap;border-block:1px solid #0e0f12}
+.marquee div{display:inline-flex;gap:38px;padding-block:14px;font-family:var(--display);font-size:clamp(20px,2.6vw,30px);animation:slide 28s linear infinite}
+.marquee b{font-weight:400;opacity:.45}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding-block:clamp(70px,9vw,130px)}
+.eyebrow{display:flex;gap:14px;align-items:center;color:var(--muted);margin-bottom:22px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+.h2{font-size:clamp(46px,8vw,112px)}
+.red{color:var(--red)}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);align-items:center}
+.about figure{margin:0;position:relative}
+.about figure img{width:100%;height:auto;border-radius:6px}
+.about figure figcaption{position:absolute;left:14px;bottom:12px;background:var(--bg);padding:6px 10px;border-radius:4px}
+.about .txt{min-width:0}
+.about .lead{font-size:clamp(20px,2vw,26px);line-height:1.4;max-width:30ch;margin:26px 0}
+.about .lead strong{color:var(--red);font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
+.stat{border-top:2px solid var(--red);padding-top:12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(30px,4vw,48px);line-height:1}
+.stat span{color:var(--muted);font-size:14px}
+.stamps{display:flex;gap:10px;margin-top:26px;align-items:center}
+.stamps img{height:62px;width:auto;border-radius:3px}
+@media (max-width:820px){.about{grid-template-columns:1fr}}
+
+/* CLIENTS */
+.clients{background:var(--panel)}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:34px}
+.logos div{width:calc(25% - 9px);background:var(--tile);border:1px solid var(--line);border-radius:10px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.4vw,30px) clamp(20px,4vw,52px)}
+.logos img{width:100%;height:100%;object-fit:contain}
+.logos .word{font-family:var(--display);font-size:clamp(14px,1.6vw,20px);text-align:center;line-height:1}
+@media (max-width:460px){.logos div{width:calc(50% - 6px)}}
+
+/* SIGNATURE */
+.sig{background:var(--red);color:#0e0f12}
+.sig .eyebrow{color:#0e0f12}.sig .eyebrow::after{background:#0e0f12;opacity:.3}
+.sig h2{font-size:clamp(52px,10vw,150px)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:44px}
+.steps div{border-top:2px solid #0e0f12;padding-top:14px}
+.steps h3{font-size:clamp(26px,3vw,38px);margin:6px 0 8px}
+.steps p{margin:0;max-width:32ch}
+@media (max-width:720px){.steps{grid-template-columns:1fr}}
+
+/* WORK */
+.workhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.project{margin-top:clamp(60px,7vw,100px)}
+.phead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 40px;align-items:end;margin-bottom:22px}
+.phead h3{font-size:clamp(40px,6.4vw,92px)}
+.phead p{margin:0;color:var(--muted);max-width:44ch;justify-self:end}
+.phead .mono{color:var(--amber);grid-column:1/-1}
+@media (max-width:760px){.phead{grid-template-columns:1fr}.phead p{justify-self:start}}
+.reel{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px;align-items:flex-start}
+.cell{position:relative;overflow:hidden;border-radius:6px;background:var(--panel);cursor:zoom-in;border:0;padding:0;color:inherit;font:inherit;text-align:left;flex:var(--ar) 1 0;min-width:0;aspect-ratio:var(--ar);max-width:100%}
+.cell img,.cell video{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cell:hover img,.cell:hover video{transform:scale(1.03)}
+.cell .lbl{position:absolute;left:10px;bottom:10px;background:rgba(14,15,18,.82);padding:5px 9px;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px;max-width:calc(100% - 20px)}
+.cell.vid .lbl::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+.cell .snd{position:absolute;left:10px;top:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(14,15,18,.85);color:var(--fg);padding:7px 11px;border-radius:999px;cursor:pointer;border:1px solid rgba(242,239,233,.25)}
+.cell .snd[aria-pressed="true"]{background:var(--red);color:#0e0f12;border-color:var(--red)}
+.cell .snd:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.hero-snd{position:absolute;top:calc(clamp(30px,5vw,58px) + 34px);right:calc(var(--gutR) + 24px);z-index:3;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(14,15,18,.7);color:var(--fg);border:1.5px solid var(--fg);padding:9px 14px;border-radius:999px;cursor:pointer}
+.hero-snd[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#0e0f12}
+@media (max-width:760px){.cell .snd{font-size:10px;padding:6px 9px;left:8px;top:8px}.cell.vid::after{display:none}}
+.cell.vid::after{content:"\25B6";position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#0e0f12;font-size:12px;padding-left:2px}
+@media (max-width:760px){
+  .row{flex-wrap:wrap;justify-content:center}
+  .row .cell.p{flex:0 1 calc(50% - 5px)}
+  .row .cell.l{flex:1 1 100%}
+  .cell .lbl{font-size:10px;left:8px;bottom:8px}
+}
+.row:has(.cell:not([hidden])) {}
+.row:not(:has(.cell:not([hidden]))){display:none}
+.project[hidden]{display:none}
+.cell[hidden]{display:none}
+
+/* SERVICES */
+.services{background:var(--panel)}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card img{aspect-ratio:3/4;width:100%;object-fit:cover;object-position:50% 30%}
+.card div{padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px}
+.card .mono{color:var(--amber)}
+.card h3{font-size:clamp(26px,2.6vw,34px);color:var(--red)}
+.card p{margin:0;color:var(--fg)}
+.card ul{margin:6px 0 0;padding:0;list-style:none;color:var(--muted);font-size:15px}
+.card li::before{content:"— "}
+@media (max-width:860px){.svc{grid-template-columns:1fr;max-width:520px}}
+
+/* CONTACT */
+.contact h2{font-size:clamp(64px,15vw,220px);letter-spacing:-.045em;line-height:.82}
+.lines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:40px}
+.line{border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.line .mono{color:var(--muted)}
+.line .val{font-family:var(--display);font-size:clamp(20px,2.6vw,32px);line-height:1.1;user-select:all;word-break:break-word}
+.line .acts{display:flex;gap:8px;flex-wrap:wrap}
+.line .acts .btn{padding:10px 14px;font-size:12px}
+@media (max-width:720px){.lines{grid-template-columns:1fr}}
+.copied{color:var(--amber)!important;border-color:var(--amber)!important}
+
+footer{border-top:1px solid var(--line);padding-block:26px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted)}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,6,8,.94);display:grid;place-items:center;padding:max(56px,env(safe-area-inset-top,0px)) var(--gutR) max(24px,env(safe-area-inset-bottom,0px)) var(--gut)}
+.lb img,.lb video{max-width:100%;max-height:calc(100vh - 110px);width:auto;height:auto;border-radius:6px}
+.lb .x{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:var(--gutR);background:var(--fg);color:var(--bg);border:0;border-radius:999px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.12em;padding:10px 14px;cursor:pointer}
+.lb .cap{position:absolute;left:var(--gut);top:max(22px,env(safe-area-inset-top,0px));color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee div,.dot{animation:none}
+  html{scroll-behavior:auto}
+  .cell img,.cell video{transition:none}
+}
+</style>
+<style>html,body{margin:0}</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">ZEREKAT<span>.</span></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="book" href="#contact">Book a shoot</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <img class="poster" src="m/film-intro.jpg" alt="">
+  <video id="heroVid" src="m/film-intro.mp4" poster="m/film-intro.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+  <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <button class="hero-snd" id="heroSnd" type="button" aria-pressed="false">♪ Sound on</button>
+  <div class="hud" aria-hidden="true"><span><span class="dot"></span>REC</span><span id="tc">00:00:00:00</span></div>
+  <div class="wrap">
+    <div class="tag">VIDEOGRAPHY · PHOTOGRAPHY · EDITING — DUBAI</div>
+    <h1>ZEREKAT<em>.</em></h1>
+    <div class="sub">
+      <p>I'm Zeyad Erekat. I film stories that are raw, timeless and unapologetic, and turn moments into cultural statements.</p>
+      <div class="btns">
+        <a class="btn solid" href="#work">▶ See the work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>VIDEOGRAPHY</span><b>●</b><span>PHOTOGRAPHY</span><b>●</b><span>EDIT &amp; POST</span><b>●</b><span>.UNFILTERED.RAW.REAL</span><b>●</b><span>DUBAI</span><b>●</b>
+  <span>VIDEOGRAPHY</span><b>●</b><span>PHOTOGRAPHY</span><b>●</b><span>EDIT &amp; POST</span><b>●</b><span>.UNFILTERED.RAW.REAL</span><b>●</b><span>DUBAI</span><b>●</b>
+</div></div>
+
+<section class="clients" aria-labelledby="clientsH">
+  <div class="wrap">
+    <div class="eyebrow mono">Experience</div>
+    <h2 class="h2" id="clientsH">BRANDS I'VE <span class="red">WORKED WITH</span></h2>
+    <div class="logos">
+      <div><img src="l/adidas.png" alt="adidas" loading="lazy"></div>
+      <div><img src="l/porsche-crest.png" alt="Porsche" loading="lazy"></div>
+      <div><img src="l/new-balance.png" alt="New Balance" loading="lazy"></div>
+      <div><img src="l/coach.png" alt="Coach" loading="lazy"></div>
+      <div><img src="l/paco.svg" alt="Paco Rabanne" loading="lazy"></div>
+      <div><img src="l/1bfs.png" alt="1 Billion Followers Summit" loading="lazy"></div>
+      <div><img src="l/dfw.png" alt="Dubai Fashion Week" loading="lazy"></div>
+      <div><img src="l/gymshark.png" alt="Gymshark" loading="lazy"></div>
+      <div><img src="l/nescafe.png" alt="Nescafé" loading="lazy"></div>
+      <div><img src="l/foot-locker.png" alt="Foot Locker" loading="lazy"></div>
+      <div><img src="l/jd.png" alt="JD" loading="lazy"></div>
+      <div><img src="l/pull-bear.png" alt="Pull&amp;Bear" loading="lazy"></div>
+      <div><img src="l/atlantis.png" alt="Atlantis" loading="lazy"></div>
+      <div><img src="l/dubai-basketball.png" alt="Dubai Basketball" loading="lazy"></div>
+      <div><img src="l/tabasco.svg" alt="Tabasco" loading="lazy"></div>
+      <div><img src="l/creators-hq.png" alt="Creators HQ" loading="lazy"></div>
+      <div><img src="l/gu.png" alt="Gulf United" loading="lazy"></div>
+      <div><img src="l/sole.png" alt="Sole DXB" loading="lazy"></div>
+      <div><img src="l/born-in-exile.png" alt="Born in Exile" loading="lazy"></div>
+      <div><img src="l/emergency-room.png" alt="Emergency Room" loading="lazy"></div>
+      <div><img src="l/new.png" alt="Fred's Coffee Party" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" aria-labelledby="workH">
+  <div class="wrap">
+    <div class="eyebrow mono">Selected work</div>
+    <div class="workhead">
+      <h2 class="h2" id="workH">MY <span class="red">WORK</span></h2>
+      <div class="filters" role="group" aria-label="Filter work">
+        <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+        <button type="button" id="f-vid" data-f="vid" aria-pressed="false">Video</button>
+        <button type="button" id="f-photo" data-f="photo" aria-pressed="false">Photo</button>
+      </div>
+    </div>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Campaign · Ghana</span>
+        <h3>MRBEAST</h3>
+        <p>The 1 Billion Acts of Kindness campaign in Ghana, building a village with 1BFS, MBRGI and the Varkey Foundation. Three campaign films, plus the edit, BTS film and stills.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-omar.mp4" data-cap="Ghana campaign film — Omar Farooq"><video src="m/ghana-omar.mp4" poster="m/ghana-omar.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Omar Farooq</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-saif.mp4" data-cap="Ghana campaign film — Saif &amp; Amro"><video src="m/ghana-saif.mp4" poster="m/ghana-saif.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Saif &amp; Amro</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-film3.mp4" data-cap="Ghana campaign film — 1 Billion Acts of Kindness"><video src="m/ghana-film3.mp4" poster="m/ghana-film3.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · 03</span></button>
+        </div>
+        <div class="row">
+          <button class="cell vid p" style="--ar:0.75" data-type="vid" data-src="m/kindness-full.mp4" data-cap="MrBeast — campaign edit"><video src="m/kindness-full.mp4" poster="m/kindness-edit.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign edit</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-bts-full.mp4" data-cap="MrBeast — Ghana BTS"><video src="m/ghana-bts-full.mp4" poster="m/ghana-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Ghana BTS film</span></button>
+          <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ghana-mural.jpg" data-cap="Ghana — on location"><img src="m/ghana-mural.jpg" alt="Crowd in front of a colourful mural in Ghana" loading="lazy" style="object-position:50% 40%"><span class="lbl">On location</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Football · Gulf United</span>
+        <h3>ANDRÉS INIESTA</h3>
+        <p>An interview film, behind-the-scenes reels and pitch-side stills for Gulf United.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell vid l" style="--ar:1.778" data-type="vid" data-src="m/iniesta-interview-full.mp4" data-cap="Andrés Iniesta — interview film"><video src="m/iniesta-interview-full.mp4" poster="m/iniesta-interview.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Interview film</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/iniesta-bts.mp4" data-cap="On the pitch — BTS"><video src="m/iniesta-bts.mp4" poster="m/iniesta-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">BTS reel</span></button>
+        </div>
+        <div class="row">
+          <button class="cell l" style="--ar:1.778" data-type="photo" data-src="m/stadium.jpg" data-cap="Pitch-side"><img src="m/stadium.jpg" alt="Stadium stand seen through a blurred foreground" loading="lazy"><span class="lbl">Pitch-side</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Launch event · adidas</span>
+        <h3>ADIDAS × DÈ FAVELA</h3>
+        <p>The adidas Predator launch with Dè Favela: football shirts, DJs and a packed room with the new boots in every hand. Event film and portraits from the night.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-01.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-01.jpg" alt="Guest in an AC Milan shirt with a camera, laughing and holding up two red Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/favela-full.mp4" data-cap="adidas × Dè Favela — Predator launch (event film)"><video src="m/favela-full.mp4" poster="m/favela-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-04.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-04.jpg" alt="Guest in a striped football crop top holding a Predator boot to her ear like a phone" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-06.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-06.jpg" alt="Guest in sunglasses holding two Predator boots either side of his head" loading="lazy"><span class="lbl">Predator launch</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-02.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-02.jpg" alt="Guest in a green adidas shirt showing the Predator sole" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-05.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-05.jpg" alt="Guest in a Dè Favela shirt and knitted hood holding two Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-03.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-03.jpg" alt="Guest in a denim jacket holding a red Predator boot to her cheek" loading="lazy"><span class="lbl">Predator launch</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Collab · After Dark</span>
+        <h3>PORSCHE</h3>
+        <p>A night shoot in collaboration with Porsche: a fashion film and stills, shot on location after dark with the grain and attitude intact.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell vid l" style="--ar:1.776" data-type="vid" data-src="m/night-shoot-full.mp4" data-cap="Porsche — After Dark film"><video src="m/night-shoot-full.mp4" poster="m/night-shoot.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">After Dark film</span></button>
+        </div>
+        <div class="row">
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/porsche-night.jpg" data-cap="Porsche — on location"><img src="m/porsche-night.jpg" alt="Three women standing by a yellow Porsche at night" loading="lazy"><span class="lbl">On location</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-woman.jpg" data-cap="Porsche — night"><img src="m/porsche-woman.jpg" alt="Woman leaning on a Porsche at night" loading="lazy"><span class="lbl">Night</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-trio.jpg" data-cap="Porsche — inside"><img src="m/porsche-trio.jpg" alt="Three women in fur coats in the back of a yellow Porsche, one lowering her sunglasses" loading="lazy"><span class="lbl">Inside</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-wave.jpg" data-cap="Porsche — inside"><img src="m/porsche-wave.jpg" alt="Woman in a fur coat waving through the window of a yellow Porsche" loading="lazy"><span class="lbl">Inside</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Sport · adidas</span>
+        <h3>DUBAI BASKETBALL × ADIDAS</h3>
+        <p>Courtside for Dubai Basketball in their adidas kit against Crvena Zvezda at Coca-Cola Arena: the drives, the dunks and the moments between plays.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-drive.jpg" data-cap="Dubai Basketball x adidas — the drive"><img src="m/dbb-drive.jpg" alt="Dubai Basketball guard in a white adidas kit dribbling past the courtside boards" loading="lazy"><span class="lbl">The drive</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-shot.jpg" data-cap="Dubai Basketball x adidas — the shot"><img src="m/dbb-shot.jpg" alt="Dubai Basketball player rising for a shot under the shot clock, seen from behind the crowd" loading="lazy"><span class="lbl">The shot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-dunk.jpg" data-cap="Dubai Basketball x adidas — the dunk"><img src="m/dbb-dunk.jpg" alt="Dubai Basketball number 22 hanging on the rim after a dunk" loading="lazy"><span class="lbl">The dunk</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-duel.jpg" data-cap="Dubai Basketball x adidas — one on one"><img src="m/dbb-duel.jpg" alt="Dubai Basketball number 1 facing up against Teodosić of Crvena Zvezda" loading="lazy"><span class="lbl">One on one</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-mason.jpg" data-cap="Dubai Basketball x adidas — between plays"><img src="m/dbb-mason.jpg" alt="Mason, number 1, standing hands on hips with his back to the camera" loading="lazy"><span class="lbl">Between plays</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">1 Billion Followers Summit · Interview</span>
+        <h3>SIMON SQUIBB</h3>
+        <p>"100 Dreams", a vertical interview film with Simon Squibb at the 1 Billion Followers Summit. Filmed, lit and edited for social.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.5625" data-type="photo" data-src="m/squibb-stage.jpg" data-cap="Simon Squibb — on set"><img src="m/squibb-stage.jpg" alt="Simon Squibb seated on a stool in front of the 1 Billion Followers Summit screen" loading="lazy" style="object-position:50% 30%"><span class="lbl">On set</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/squibb-full.mp4" data-cap="Simon Squibb — 100 Dreams (full film)"><video src="m/squibb-full.mp4" poster="m/squibb-loop.jpg" muted loop playsinline preload="none" style="object-position:50% 30%"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">100 Dreams · full film</span></button>
+          <button class="cell p" style="--ar:0.5625" data-type="photo" data-src="m/squibb-close.jpg" data-cap="Simon Squibb — close-up"><img src="m/squibb-close.jpg" alt="Close-up of Simon Squibb mid-sentence against a green backdrop" loading="lazy" style="object-position:50% 35%"><span class="lbl">Close-up</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Sneakers · Campaign</span>
+        <h3>NEW BALANCE</h3>
+        <p>The New Balance 1906 in black and magenta, shot at night in old-town alleys: wooden doors, clay walls, lace socks and silver rings.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-hands.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-hands.jpg" alt="Hands with silver rings holding black and magenta New Balance sneakers with lace socks" loading="lazy"><span class="lbl">Detail</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-door.jpg" data-cap="New Balance 1906 — look"><img src="m/nb-door.jpg" alt="Woman in a black bomber kicking one leg up in front of an old wooden door" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-wall.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-wall.jpg" alt="New Balance 1906 sneakers pressed against a clay wall" loading="lazy"><span class="lbl">Detail</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Live · Concert</span>
+        <h3>QUAVO</h3>
+        <p>Quavo live in Dubai: on stage under the lights, in the smoke and in black and white, shot from the front of the crowd.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-stage.jpg" data-cap="Quavo — on stage"><img src="m/quavo-stage.jpg" alt="Quavo on stage in sunglasses, chains and crystal denim shorts in front of his name on the screen" loading="lazy"><span class="lbl">On stage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo.jpg" data-cap="Quavo — black &amp; white"><img src="m/quavo.jpg" alt="Quavo performing, black and white" loading="lazy"><span class="lbl">Black &amp; white</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-smoke.jpg" data-cap="Quavo — in the smoke"><img src="m/quavo-smoke.jpg" alt="Quavo turned away from the camera in stage smoke and coloured light" loading="lazy"><span class="lbl">In the smoke</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Festival · Culture</span>
+        <h3>SOLE DXB</h3>
+        <p>Sole DXB, the region's festival of sneakers, music and street culture: Kaytranada on the main stage, the DJs and the best-dressed crowd in Dubai, filmed and shot through the night.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/kaytranada-full.mp4" data-cap="Sole DXB — Kaytranada live"><video src="m/kaytranada-full.mp4" poster="m/kaytranada-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Kaytranada live</span></button>
+          <button class="cell p" style="--ar:0.8" data-type="photo" data-src="m/sole-stage.jpg" data-cap="Sole DXB — main stage"><img src="m/sole-stage.jpg" alt="Sole DXB stage with light panels" loading="lazy"><span class="lbl">Main stage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — dj set"><img src="m/sole-03.jpg" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-01.jpg" data-cap="Sole DXB — style"><img src="m/sole-01.jpg" alt="Two men in sunglasses, one in raw denim and one in a red racing jacket, in front of lit scaffolding" loading="lazy"><span class="lbl">Style</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-04.jpg" data-cap="Sole DXB — style"><img src="m/sole-04.jpg" alt="Man in a raw denim jacket with a leather collar standing among the festival stalls" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-02.jpg" data-cap="Sole DXB — style"><img src="m/sole-02.jpg" alt="Two women posing under the orange Boxout.fm sign, one in polka dots and one in a Puma King jersey" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/sole-film-full.mp4" data-cap="Sole DXB — Street Culture film"><video src="m/sole-film-full.mp4" poster="m/sole-film-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Street Culture film</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-05.jpg" data-cap="Sole DXB — style"><img src="m/sole-05.jpg" alt="Woman in a blue crochet face mask and leather jacket beside a man in olive with the Dubai skyline behind" loading="lazy"><span class="lbl">Style</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-08.jpg" data-cap="Sole DXB — the crowd"><img src="m/sole-08.jpg" alt="Man in a white vest grinning and pointing at his eye in the red-lit crowd" loading="lazy"><span class="lbl">The crowd</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-06.jpg" data-cap="Sole DXB — style"><img src="m/sole-06.jpg" alt="Two women in black leather and pleats, one in a knitted pointed hat" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-07.jpg" data-cap="Sole DXB — style"><img src="m/sole-07.jpg" alt="Two friends in lace, mesh and tattoos smiling at the camera at night" loading="lazy"><span class="lbl">Style</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Fashion · Lookbook &amp; Dubai Fashion Week</span>
+        <h3>BORN IN EXILE</h3>
+        <p>A studio lookbook for Born in Exile, then backstage with the brand at Dubai Fashion Week: the looks, the models and the last touches before the show.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-coat.jpg" data-cap="Born in Exile — lookbook"><img src="m/bie-coat.jpg" alt="Model in a long black leather coat between two standing panels" loading="lazy"><span class="lbl">Lookbook</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-styling.jpg" data-cap="Born in Exile — styling on set"><img src="m/bie-styling.jpg" alt="Stylist adjusting a red hood on a model" loading="lazy"><span class="lbl">Styling</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/bie-studio.jpg" data-cap="Born in Exile — behind the scenes"><img src="m/bie-studio.jpg" alt="The crew, rails and model in the white studio" loading="lazy"><span class="lbl">Behind the scenes</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-pink.jpg" data-cap="Born in Exile — barbed-wire denim"><img src="m/bie-pink.jpg" alt="Model in a pink top and barbed-wire print jeans" loading="lazy"><span class="lbl">Lookbook</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-hood.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-hood.jpg" alt="Model in a red Born in Exile scarf worn as a hood" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-sequin.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-sequin.jpg" alt="Model in a bronze sequin top having final touches backstage" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-blazer.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-blazer.jpg" alt="Model in a sparkling black blazer and barbed-wire necklace" loading="lazy"><span class="lbl">DFW backstage</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-white.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-white.jpg" alt="Model in a draped white dress looking over her shoulder" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-suit.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-suit.jpg" alt="Model in an open black tuxedo jacket and barbed-wire chain" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-varsity.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-varsity.jpg" alt="Model in a navy and white varsity jacket with Arabic script" loading="lazy"><span class="lbl">DFW backstage</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Food · Brand event</span>
+        <h3>TABASCO × CHEF HALAWA</h3>
+        <p>The Tabasco Drip Society night with Chef Halawa: giant bottles, neon, the full sauce range and the chef serving straight from the kitchen to the table. Event film and stills from the night.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-hug.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-hug.jpg" alt="Guest in crushed velvet hugging a giant Tabasco bottle next to a neon sign" loading="lazy"><span class="lbl">Guests</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/tabasco-full.mp4" data-cap="Tabasco × Chef Halawa — event film"><video src="m/tabasco-full.mp4" poster="m/tabasco-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-chef.jpg" data-cap="Tabasco × Chef Halawa — the chef"><img src="m/tabasco-chef.jpg" alt="Chef Halawa in his whites serving pastries with tongs in the kitchen" loading="lazy"><span class="lbl">The chef</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-bottles.jpg" data-cap="Tabasco × Chef Halawa — the range"><img src="m/tabasco-bottles.jpg" alt="Tabasco Sriracha, Sweet Chili, Salsa Picante and Pepper Sauce bottles on a white plinth" loading="lazy"><span class="lbl">The range</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-drip.jpg" data-cap="Tabasco × Chef Halawa — drip society"><img src="m/tabasco-drip.jpg" alt="Chef Halawa smiling behind two loaded platters under the red Drip Society neon" loading="lazy"><span class="lbl">Drip Society</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-denim.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-denim.jpg" alt="Guest in a denim set laughing beside a giant Tabasco bottle and the Tabasco logo" loading="lazy"><span class="lbl">Guests</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Fashion · Backstage</span>
+        <h3>EMERGENCY ROOM</h3>
+        <p>Backstage with Emergency Room: embroidered vintage textiles, lace, Timberlands and red lips, from the last fittings to the designer's final bow.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-01.jpg" data-cap="Emergency Room — look"><img src="m/er-01.jpg" alt="Model in an embroidered patchwork shirt and blue sunglasses" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-06.jpg" data-cap="Emergency Room — backstage"><img src="m/er-06.jpg" alt="Blonde model in a lace fringe dress during hair and styling" loading="lazy"><span class="lbl">Backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-04.jpg" data-cap="Emergency Room — look"><img src="m/er-04.jpg" alt="Model in an embroidered dress with a silk headscarf" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-03.jpg" data-cap="Emergency Room — detail"><img src="m/er-03.jpg" alt="Lace socks and Timberland boots under a lace hem" loading="lazy"><span class="lbl">Detail</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-11.jpg" data-cap="Emergency Room — backstage"><img src="m/er-11.jpg" alt="Model in a tasselled patchwork jacket beside the line-up board" loading="lazy"><span class="lbl">Backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-08.jpg" data-cap="Emergency Room — look"><img src="m/er-08.jpg" alt="Model in a grey printed dress with a bright silk scarf" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-12.jpg" data-cap="Emergency Room — final bow"><img src="m/er-12.jpg" alt="The designer hugging the team after the show" loading="lazy"><span class="lbl">Final bow</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-07.jpg" data-cap="Emergency Room — look"><img src="m/er-07.jpg" alt="Model in a black turtleneck, pearl collar and zigzag trousers" loading="lazy"><span class="lbl">Look</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Local brand · Campaign</span>
+        <h3>UTOPIA</h3>
+        <p>A campaign for the local label Utopia: a vintage green Rolls-Royce, Persian rugs, a carrom board and an oud, styled with the brand's jerseys, embroidered shirts and caps.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-car.jpg" data-cap="Utopia — campaign"><img src="m/utopia-car.jpg" alt="Model in a green Utopia jersey on the back seat of a vintage car with a football" loading="lazy"><span class="lbl">Campaign</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/utopia-carrom.jpg" data-cap="Utopia — campaign"><img src="m/utopia-carrom.jpg" alt="Top-down shot of two models playing carrom on a Persian rug beside an oud and a cassette player" loading="lazy"><span class="lbl">Campaign</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-rolls.jpg" data-cap="Utopia — campaign"><img src="m/utopia-rolls.jpg" alt="Two models in embroidered Utopia shirts posing by a green Rolls-Royce" loading="lazy"><span class="lbl">Campaign</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Music · Clubs</span>
+        <h3>NIGHTLIFE</h3>
+        <p>Club nights, DJ sets and packed rooms, from Bodega and beyond, filmed from inside the energy with the neon and the grain left in.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/nightlife-full.mp4" data-cap="Nightlife — club film"><video src="m/nightlife-full.mp4" poster="m/nightlife.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Club film</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dj-hi.jpg" data-cap="DJ set"><img src="m/dj-hi.jpg" alt="DJ in a keffiyeh under red light and a neon skull" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — dj set"><img src="m/bodega-dj.jpg" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
+        </div>
+        <div class="row">
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/crowd.jpg" data-cap="The crowd"><img src="m/crowd.jpg" alt="Packed crowd seen from above" loading="lazy"><span class="lbl">The crowd</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-booth.jpg" data-cap="Bodega — the booth"><img src="m/bodega-booth.jpg" alt="Two DJs behind the decks at Bodega with the crowd dancing in front" loading="lazy"><span class="lbl">The booth</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Fashion · Editorial</span>
+        <h3>STUDIO SHOOT</h3>
+        <p>An editorial studio day: white sheets, heels and gold, a blue G-Class door and lace in the dressing room. Shot on flash with the grain left in.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-01.jpg" data-cap="Studio shoot"><img src="m/studio-01.jpg" alt="Model in a sequin dress kneeling in the open door of a blue car" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-09.jpg" data-cap="Studio shoot"><img src="m/studio-09.jpg" alt="Model lying among white pillows holding red heels" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-07.jpg" data-cap="Studio shoot"><img src="m/studio-07.jpg" alt="Model in black lace and sunglasses with arms crossed" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-11.jpg" data-cap="Studio shoot"><img src="m/studio-11.jpg" alt="Model in sunglasses and a gold chain sitting in white bedding" loading="lazy"><span class="lbl">Studio shoot</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-02.jpg" data-cap="Studio shoot"><img src="m/studio-02.jpg" alt="Model in a leather jacket holding a gold heel to her ear" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-05.jpg" data-cap="Studio shoot"><img src="m/studio-05.jpg" alt="Model wrapped in white sheets, shot from above" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-06.jpg" data-cap="Studio shoot"><img src="m/studio-06.jpg" alt="Model on a white bed beside a studio ladder" loading="lazy"><span class="lbl">Studio shoot</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">Streetwear · Studio</span>
+        <h3>STUDIO PORTRAITS</h3>
+        <p>Low-key streetwear portraits: one light, a dark backdrop and the shadows doing the work.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-01.jpg" data-cap="Studio portraits"><img src="m/dark-01.jpg" alt="Man in a graphic long-sleeve top holding a basketball to his head" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-04.jpg" data-cap="Studio portraits"><img src="m/dark-04.jpg" alt="Man in a red hockey jersey and trucker cap adjusting his glasses" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-03.jpg" data-cap="Studio portraits"><img src="m/dark-03.jpg" alt="Man with braids holding a cross chain in low light" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-02.jpg" data-cap="Studio portraits"><img src="m/dark-02.jpg" alt="Man in a blue Arabic-print tee under a large softbox" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-05.jpg" data-cap="Studio portraits"><img src="m/dark-05.jpg" alt="Man in a washed zip hoodie looking down at his rings" loading="lazy"><span class="lbl">Portrait</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="phead">
+        <span class="mono">People · Editorial</span>
+        <h3>EDITORIAL</h3>
+        <p>Styled shoots, portraits and live events. The same raw energy, with more room to breathe.</p>
+      </div>
+      <div class="reel">
+        <div class="row">
+          <button class="cell p" style="--ar:0.666" data-type="photo" data-src="m/editorial-white.jpg" data-cap="Studio editorial"><img src="m/editorial-white.jpg" alt="Woman lying on white sheets holding heels" loading="lazy"><span class="lbl">Studio</span></button>
+          <button class="cell l" style="--ar:1.498" data-type="photo" data-src="m/portrait-palms.jpg" data-cap="Portrait"><img src="m/portrait-palms.jpg" alt="Man in sunglasses among palm leaves" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/suit-sneakers.jpg" data-cap="Editorial — suit &amp; sneakers"><img src="m/suit-sneakers.jpg" alt="Man in a suit and hat holding sneakers against red wallpaper" loading="lazy"><span class="lbl">Lookbook</span></button>
+        </div>
+        <div class="row">
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dancers.jpg" data-cap="Live event"><img src="m/dancers.jpg" alt="Two people dancing behind the DJ booth" loading="lazy" style="object-position:50% 35%"><span class="lbl">Live event</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dance-floor.jpg" data-cap="Dance floor"><img src="m/dance-floor.jpg" alt="Couple dancing on a crowded floor" loading="lazy" style="object-position:50% 30%"><span class="lbl">Dance floor</span></button>
+          <button class="cell p" style="--ar:0.749" data-type="photo" data-src="m/love-yourself.jpg" data-cap="Event"><img src="m/love-yourself.jpg" alt="Crowd at an outdoor event with a Love Yourself sign" loading="lazy" style="object-position:50% 30%"><span class="lbl">Event</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <figure>
+      <img src="m/about-zeyad-2.jpg" alt="Zeyad Erekat in sunglasses leaning on an ironing board in a laundry shop, black and white" loading="lazy">
+      <figcaption class="mono"><span class="dot"></span>Behind the camera</figcaption>
+    </figure>
+    <div class="txt">
+      <div class="eyebrow mono">About me</div>
+      <h2 class="h2">BEHIND THE <span class="red">CAMERA</span></h2>
+      <p class="lead">Most people know me as <strong>Zerekat</strong>. I'm a Dubai-based videographer, photographer and editor with Jordanian and Egyptian roots, filming fashion, street culture, music and events across the Middle East.</p>
+      <div class="stats">
+        <div class="stat"><b>6+</b><span>years behind the camera</span></div>
+        <div class="stat"><b>15+</b><span>brands and campaigns</span></div>
+        <div class="stat"><b>3</b><span>crafts: film, photo, edit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sig" aria-labelledby="sigH">
+  <div class="wrap">
+    <div class="eyebrow mono">The signature</div>
+    <h2 id="sigH">VINTAGE.<br>RETRO. VHS.</h2>
+    <div class="steps">
+      <div><span class="mono">01</span><h3>SHOOT</h3><p>Raw, in-the-moment coverage of fashion, streetwear, music and events.</p></div>
+      <div><span class="mono">02</span><h3>CUT</h3><p>Edits that move with the energy of the room, the music and the crowd.</p></div>
+      <div><span class="mono">03</span><h3>GRADE</h3><p>Vintage, VHS-inspired colour that gives every project a look you can recognise.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services" aria-labelledby="svcH">
+  <div class="wrap">
+    <div class="eyebrow mono">What you can book</div>
+    <h2 class="h2" id="svcH">SERV<span class="red">ICES</span></h2>
+    <div class="svc">
+      <div class="card"><img src="m/dj-booth.jpg" alt="DJ playing behind the decks" loading="lazy"><div><span class="mono">01</span><h3>VIDEOGRAPHY</h3><p>Bold, raw and timeless films for fashion, streetwear, music and events.</p><ul><li>Campaign and brand films</li><li>Event and club coverage</li><li>Reels and BTS</li></ul></div></div>
+      <div class="card"><img src="m/skull-fisheye.jpg" alt="Fisheye shot of a neon skull over a crowd" loading="lazy" style="object-position:50% 30%"><div><span class="mono">02</span><h3>EDIT &amp; POST</h3><p>From clean cuts to full edits, finished in the signature VHS look.</p><ul><li>Editing and colour grading</li><li>Social cut-downs, 9:16 and 4:5</li><li>Retro and VHS finishing</li></ul></div></div>
+      <div class="card"><img src="m/foosball.jpg" alt="Hooded figures at a foosball table under orange light" loading="lazy"><div><span class="mono">03</span><h3>PHOTOGRAPHY</h3><p>Fashion, street, portrait and event photography.</p><ul><li>Lookbooks and editorials</li><li>Launches and activations</li><li>Portraits</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="ctH">
+  <div class="wrap">
+    <div class="eyebrow mono"><span><span class="dot"></span>Contact</span></div>
+    <h2 id="ctH">LET'S <span class="red">ROLL.</span></h2>
+    <p class="lead" style="max-width:40ch;font-size:clamp(18px,1.8vw,22px);margin:24px 0 0">DM or email for rates and packages. Let's build something unapologetic together.</p>
+    <div class="lines">
+      <div class="line">
+        <span class="mono">Email</span>
+        <span class="val" id="em">zeyadmousa42@gmail.com</span>
+        <div class="acts"><button class="btn solid" type="button" data-copy="zeyadmousa42@gmail.com">Copy email</button><a class="btn" href="mailto:zeyadmousa42@gmail.com?subject=Project%20enquiry">Open mail</a></div>
+      </div>
+      <div class="line">
+        <span class="mono">Phone · WhatsApp</span>
+        <span class="val" id="ph">+971 58 222 9703</span>
+        <div class="acts"><button class="btn solid" type="button" data-copy="+971582229703">Copy number</button><a class="btn" href="https://wa.me/971582229703" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">
+    <span>© 2026 Zeyad Erekat · Zerekat</span>
+    <span>.UNFILTERED.RAW.REAL</span>
+    <span>Dubai, UAE</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Media viewer">
+  <span class="cap mono" id="lbCap"></span>
+  <button class="x" type="button" id="lbX">Close ✕</button>
+  <div id="lbBody"></div>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hv = document.getElementById('heroVid');
+  if (reduce && hv) { hv.removeAttribute('autoplay'); hv.pause(); }
+  else if (hv) { var p = hv.play(); if (p && p.catch) p.catch(function(){}); }
+
+  // running timecode
+  var tc = document.getElementById('tc'), t0 = Date.now();
+  function pad(n){return (n<10?'0':'')+n}
+  setInterval(function(){
+    var ms = Date.now()-t0, s=Math.floor(ms/1000), f=Math.floor((ms%1000)/40);
+    tc.textContent = pad(Math.floor(s/3600))+':'+pad(Math.floor(s/60)%60)+':'+pad(s%60)+':'+pad(f);
+  }, 40);
+
+  // sound: one video plays with sound at a time
+  var sndBtns=[].slice.call(document.querySelectorAll('.cell .snd'));
+  var heroBtn=document.getElementById('heroSnd');
+  function label(btn,on){ btn.setAttribute('aria-pressed',on?'true':'false'); btn.textContent = btn===heroBtn ? (on?'\u266A Sound off':'\u266A Sound on') : (on?'\u266A Sound on':'\u266A Tap for sound'); }
+  function muteAll(except){
+    sndBtns.forEach(function(b){ var v=b.parentNode.querySelector('video'); if(v!==except){ v.muted=true; label(b,false);} });
+    if(hv && hv!==except){ hv.muted=true; label(heroBtn,false); }
+  }
+  function toggle(v,btn){
+    var on=v.muted;
+    muteAll(v);
+    v.muted=!on; label(btn,on);
+    if(on){ v.preload='auto'; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+  }
+  sndBtns.forEach(function(b){
+    var v=b.parentNode.querySelector('video');
+    b.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); toggle(v,b); });
+    b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); e.stopPropagation(); toggle(v,b);} });
+  });
+  if(heroBtn && hv) heroBtn.addEventListener('click',function(){ toggle(hv,heroBtn); });
+
+  // play reel videos only while on screen
+  var vids = document.querySelectorAll('.cell video');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v=e.target;
+        if (e.isIntersecting) { v.preload='auto'; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+        else v.pause();
+      });
+    }, {threshold:.35});
+    vids.forEach(function(v){io.observe(v)});
+  }
+
+  // filters
+  var fb = document.querySelectorAll('.filters button');
+  fb.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f=b.getAttribute('data-f');
+      fb.forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false')});
+      document.querySelectorAll('.project').forEach(function(pr){
+        var any=false;
+        pr.querySelectorAll('.cell').forEach(function(c){
+          var show = f==='all' || c.getAttribute('data-type')===f;
+          c.hidden=!show; if(show) any=true;
+        });
+        pr.hidden=!any;
+      });
+    });
+  });
+
+  // lightbox
+  var lb=document.getElementById('lb'), body=document.getElementById('lbBody'), cap=document.getElementById('lbCap');
+  var paused=[];
+  function close(){ body.innerHTML=''; lb.hidden=true; document.body.style.overflow=''; paused.forEach(function(v){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); }); paused=[]; }
+  function pauseAll(){ paused=[]; document.querySelectorAll('video').forEach(function(v){ if(!v.paused){ v.pause(); paused.push(v);} }); muteAll(null); }
+  document.querySelectorAll('.cell').forEach(function(c){
+    c.addEventListener('click', function(e){
+      if (e && e.target.closest && e.target.closest('.snd')) return;
+      var src=c.getAttribute('data-src'), isV=c.getAttribute('data-type')==='vid';
+      if (isV) pauseAll();
+      body.innerHTML='';
+      var el;
+      if (isV){ el=document.createElement('video'); el.src=src; el.controls=true; el.playsInline=true; el.autoplay=true; }
+      else { el=document.createElement('img'); el.src=src; var im=c.querySelector('img'); el.alt=im?im.alt:''; }
+      body.appendChild(el);
+      cap.textContent=c.getAttribute('data-cap')||'';
+      lb.hidden=false; document.body.style.overflow='hidden';
+      document.getElementById('lbX').focus();
+      if (isV){ var p=el.play(); if(p&&p.catch)p.catch(function(){}); }
+    });
+  });
+  document.getElementById('lbX').addEventListener('click', close);
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !lb.hidden) close(); });
+
+  // copy buttons
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var txt=b.getAttribute('data-copy'), label=b.textContent;
+      function done(){ b.textContent='Copied'; b.classList.add('copied'); setTimeout(function(){b.textContent=label; b.classList.remove('copied');},1600); }
+      function fallback(){ var v=b.closest('.line').querySelector('.val'); var r=document.createRange(); r.selectNodeContents(v); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected — press copy'; setTimeout(function(){b.textContent=label},2200); }
+      try { navigator.clipboard.writeText(txt).then(done, fallback); } catch(e){ fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
