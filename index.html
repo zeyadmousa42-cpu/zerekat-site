@@ -164,10 +164,15 @@ section{padding-block:clamp(70px,9vw,130px)}
 @media (max-width:760px){.cell .snd{font-size:10px;padding:6px 9px;left:8px;top:8px}.cell.vid::after{display:none}}
 .cell.vid::after{content:"\25B6";position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#0e0f12;font-size:12px;padding-left:2px}
 @media (max-width:760px){
-  .row{flex-wrap:wrap;justify-content:center}
-  .row .cell.p{flex:0 1 calc(50% - 5px)}
-  .row .cell.l{flex:1 1 100%}
-  .cell .lbl{font-size:10px;left:8px;bottom:8px}
+  .reel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;grid-auto-flow:row dense}
+  .row{display:contents}
+  .reel .cell{width:auto;max-width:none;flex:none;border-radius:8px}
+  .reel .cell.p{aspect-ratio:3/4}
+  .reel .cell.l{grid-column:1/-1;aspect-ratio:var(--ar)}
+  .reel .cell.solo{grid-column:1/-1;aspect-ratio:4/5}
+  .cell .lbl{font-size:9px;letter-spacing:.1em;left:8px;bottom:8px;padding:4px 7px}
+  .cell .snd{font-size:9px!important;padding:5px 8px!important;left:8px!important;top:8px!important;letter-spacing:.06em}
+  .cell.vid::after{display:none!important}
 }
 .row:has(.cell:not([hidden])) {}
 .row:not(:has(.cell:not([hidden]))){display:none}
@@ -957,6 +962,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       });
     }
   }
+
+  // phone: a portrait left alone at the end of a project spans full width
+  function soloFix(){
+    var mob=window.matchMedia('(max-width:760px)').matches;
+    document.querySelectorAll('.project .reel').forEach(function(r){
+      var cells=[].slice.call(r.querySelectorAll('.cell')).filter(function(c){return !c.hidden});
+      cells.forEach(function(c){c.classList.remove('solo')});
+      if(!mob) return;
+      var ps=cells.filter(function(c){return c.classList.contains('p')});
+      if(ps.length%2===1) ps[ps.length-1].classList.add('solo');
+    });
+  }
+  soloFix(); window.addEventListener('resize',soloFix);
+  document.querySelectorAll('.filters button').forEach(function(b){ b.addEventListener('click',function(){ setTimeout(soloFix,0); }); });
 })();
 </script>
 
