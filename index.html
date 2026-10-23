@@ -684,8 +684,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
     <div class="lines">
       <div class="line">
         <span class="mono">Email</span>
-        <span class="val" id="em">zeyadmousa42@gmail.com</span>
-        <div class="acts"><button class="btn solid" type="button" data-copy="zeyadmousa42@gmail.com">Copy email</button><a class="btn" href="mailto:zeyadmousa42@gmail.com?subject=Project%20enquiry">Open mail</a></div>
+        <span class="val" id="em">hello@zerekat.com</span>
+        <div class="acts"><button class="btn solid" type="button" data-copy="hello@zerekat.com">Copy email</button><a class="btn" href="mailto:hello@zerekat.com?subject=Project%20enquiry">Open mail</a></div>
       </div>
       <div class="line">
         <span class="mono">Phone · WhatsApp</span>
@@ -834,10 +834,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       if(ef._honey.value){ return; }
       sb.disabled=true; st.textContent='Sending\u2026';
       var data={name:n,phone:ph,email:em,service:ef.service.value,message:ef.message.value.trim(),_subject:'New enquiry from zerekat.com: '+n,_template:'table',_captcha:'false'};
-      fetch('https://formsubmit.co/ajax/zeyadmousa42@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      fetch('https://formsubmit.co/ajax/hello@zerekat.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
         .then(function(){ ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); })
-        .catch(function(){ st.textContent='It didn\'t send. Please email zeyadmousa42@gmail.com or WhatsApp +971 58 222 9703.'; st.classList.add('err'); })
+        .catch(function(){ st.textContent='It didn\'t send. Please email hello@zerekat.com or WhatsApp +971 58 222 9703.'; st.classList.add('err'); })
         .then(function(){ sb.disabled=false; });
     });
   }
