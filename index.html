@@ -294,6 +294,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
  .cell:hover::before{animation:none}
  .cell:hover img,.cell:hover video{animation:none}
 }
+.wa-float{display:none}
+@media (max-width:760px){
+  .wa-float{display:flex;align-items:center;justify-content:center;position:fixed;z-index:70;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:#25d366;color:#0e0f12;box-shadow:0 8px 24px rgba(0,0,0,.45);text-decoration:none}
+  .wa-float svg{width:28px;height:28px}
+  body.lb-open .wa-float{display:none}
+}
+.steps-how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px);counter-reset:how}
+.steps-how div{border-top:2px solid var(--red);padding-top:14px;min-width:0}
+.steps-how .mono{color:var(--amber)}
+.steps-how h4{font-family:var(--display);font-weight:400;font-size:clamp(20px,1.9vw,26px);margin:8px 0 6px;line-height:1.05}
+.steps-how p{margin:0;color:var(--muted);font-size:15px;max-width:30ch}
+.how-title{margin-top:clamp(56px,6vw,90px);color:var(--muted)}
+@media (max-width:860px){.steps-how{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.steps-how{grid-template-columns:1fr}}
 </style>
 <style>html,body{margin:0}</style>
 </head>
@@ -387,13 +401,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-omar.mp4" data-cap="Ghana campaign film — Omar Farooq"><video src="m/ghana-omar.mp4" poster="m/ghana-omar.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Omar Farooq</span></button>
-          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-saif.mp4" data-cap="Ghana campaign film — Saif &amp; Amro"><video src="m/ghana-saif.mp4" poster="m/ghana-saif.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Saif &amp; Amro</span></button>
-          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-film3.mp4" data-cap="Ghana campaign film — 1 Billion Acts of Kindness"><video src="m/ghana-film3.mp4" poster="m/ghana-film3.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · 03</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-omar.mp4" data-cap="Ghana campaign film — Omar Farooq"><video src="m/ghana-omar-prev.mp4" data-full="m/ghana-omar.mp4" poster="m/ghana-omar.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Omar Farooq</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-saif.mp4" data-cap="Ghana campaign film — Saif &amp; Amro"><video src="m/ghana-saif-prev.mp4" data-full="m/ghana-saif.mp4" poster="m/ghana-saif.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · Saif &amp; Amro</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-film3.mp4" data-cap="Ghana campaign film — 1 Billion Acts of Kindness"><video src="m/ghana-film3-prev.mp4" data-full="m/ghana-film3.mp4" poster="m/ghana-film3.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign film · 03</span></button>
         </div>
         <div class="row">
-          <button class="cell vid p" style="--ar:0.75" data-type="vid" data-src="m/kindness-full.mp4" data-cap="MrBeast — campaign edit"><video src="m/kindness-full.mp4" poster="m/kindness-edit.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign edit</span></button>
-          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-bts-full.mp4" data-cap="MrBeast — Ghana BTS"><video src="m/ghana-bts-full.mp4" poster="m/ghana-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Ghana BTS film</span></button>
+          <button class="cell vid p" style="--ar:0.75" data-type="vid" data-src="m/kindness-full.mp4" data-cap="MrBeast — campaign edit"><video src="m/kindness-full-prev.mp4" data-full="m/kindness-full.mp4" poster="m/kindness-edit.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign edit</span></button>
+          <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-bts-full.mp4" data-cap="MrBeast — Ghana BTS"><video src="m/ghana-bts-full-prev.mp4" data-full="m/ghana-bts-full.mp4" poster="m/ghana-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Ghana BTS film</span></button>
           <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ghana-mural.jpg" data-cap="Ghana — on location"><img src="m/ghana-mural.jpg" alt="Crowd in front of a colourful mural in Ghana" loading="lazy" style="object-position:50% 40%"><span class="lbl">On location</span></button>
         </div>
       </div>
@@ -407,8 +421,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell vid l" style="--ar:1.778" data-type="vid" data-src="m/iniesta-interview-full.mp4" data-cap="Andrés Iniesta — interview film"><video src="m/iniesta-interview-full.mp4" poster="m/iniesta-interview.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Interview film</span></button>
-          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/iniesta-bts.mp4" data-cap="On the pitch — BTS"><video src="m/iniesta-bts.mp4" poster="m/iniesta-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">BTS reel</span></button>
+          <button class="cell vid l" style="--ar:1.778" data-type="vid" data-src="m/iniesta-interview-full.mp4" data-cap="Andrés Iniesta — interview film"><video src="m/iniesta-interview-full-prev.mp4" data-full="m/iniesta-interview-full.mp4" poster="m/iniesta-interview.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Interview film</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/iniesta-bts.mp4" data-cap="On the pitch — BTS"><video src="m/iniesta-bts-prev.mp4" data-full="m/iniesta-bts.mp4" poster="m/iniesta-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">BTS reel</span></button>
         </div>
         <div class="row">
           <button class="cell l" style="--ar:1.778" data-type="photo" data-src="m/stadium.jpg" data-cap="Pitch-side"><img src="m/stadium.jpg" alt="Stadium stand seen through a blurred foreground" loading="lazy"><span class="lbl">Pitch-side</span></button>
@@ -425,7 +439,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-01.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-01.jpg" alt="Guest in an AC Milan shirt with a camera, laughing and holding up two red Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
-          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/favela-full.mp4" data-cap="adidas × Dè Favela — Predator launch (event film)"><video src="m/favela-full.mp4" poster="m/favela-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/favela-full.mp4" data-cap="adidas × Dè Favela — Predator launch (event film)"><video src="m/favela-full-prev.mp4" data-full="m/favela-full.mp4" poster="m/favela-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-04.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-04.jpg" alt="Guest in a striped football crop top holding a Predator boot to her ear like a phone" loading="lazy"><span class="lbl">Predator launch</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-06.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-06.jpg" alt="Guest in sunglasses holding two Predator boots either side of his head" loading="lazy"><span class="lbl">Predator launch</span></button>
         </div>
@@ -445,7 +459,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell vid l" style="--ar:1.776" data-type="vid" data-src="m/night-shoot-full.mp4" data-cap="Porsche — After Dark film"><video src="m/night-shoot-full.mp4" poster="m/night-shoot.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">After Dark film</span></button>
+          <button class="cell vid l" style="--ar:1.776" data-type="vid" data-src="m/night-shoot-full.mp4" data-cap="Porsche — After Dark film"><video src="m/night-shoot-full-prev.mp4" data-full="m/night-shoot-full.mp4" poster="m/night-shoot.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">After Dark film</span></button>
         </div>
         <div class="row">
           <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/porsche-night.jpg" data-cap="Porsche — on location"><img src="m/porsche-night.jpg" alt="Three women standing by a yellow Porsche at night" loading="lazy"><span class="lbl">On location</span></button>
@@ -484,7 +498,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell p" style="--ar:0.5625" data-type="photo" data-src="m/squibb-stage.jpg" data-cap="Simon Squibb — on set"><img src="m/squibb-stage.jpg" alt="Simon Squibb seated on a stool in front of the 1 Billion Followers Summit screen" loading="lazy" style="object-position:50% 30%"><span class="lbl">On set</span></button>
-          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/squibb-full.mp4" data-cap="Simon Squibb — 100 Dreams (full film)"><video src="m/squibb-full.mp4" poster="m/squibb-loop.jpg" muted loop playsinline preload="none" style="object-position:50% 30%"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">100 Dreams · full film</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/squibb-full.mp4" data-cap="Simon Squibb — 100 Dreams (full film)"><video src="m/squibb-full-prev.mp4" data-full="m/squibb-full.mp4" poster="m/squibb-loop.jpg" muted loop playsinline preload="none" style="object-position:50% 30%"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">100 Dreams · full film</span></button>
           <button class="cell p" style="--ar:0.5625" data-type="photo" data-src="m/squibb-close.jpg" data-cap="Simon Squibb — close-up"><img src="m/squibb-close.jpg" alt="Close-up of Simon Squibb mid-sentence against a green backdrop" loading="lazy" style="object-position:50% 35%"><span class="lbl">Close-up</span></button>
         </div>
       </div>
@@ -528,7 +542,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/kaytranada-full.mp4" data-cap="Sole DXB — Kaytranada live"><video src="m/kaytranada-full.mp4" poster="m/kaytranada-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Kaytranada live</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/kaytranada-full.mp4" data-cap="Sole DXB — Kaytranada live"><video src="m/kaytranada-full-prev.mp4" data-full="m/kaytranada-full.mp4" poster="m/kaytranada-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Kaytranada live</span></button>
           <button class="cell p" style="--ar:0.8" data-type="photo" data-src="m/sole-stage.jpg" data-cap="Sole DXB — main stage"><img src="m/sole-stage.jpg" alt="Sole DXB stage with light panels" loading="lazy"><span class="lbl">Main stage</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — dj set"><img src="m/sole-03.jpg" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-01.jpg" data-cap="Sole DXB — style"><img src="m/sole-01.jpg" alt="Two men in sunglasses, one in raw denim and one in a red racing jacket, in front of lit scaffolding" loading="lazy"><span class="lbl">Style</span></button>
@@ -536,7 +550,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <div class="row">
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-04.jpg" data-cap="Sole DXB — style"><img src="m/sole-04.jpg" alt="Man in a raw denim jacket with a leather collar standing among the festival stalls" loading="lazy"><span class="lbl">Style</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-02.jpg" data-cap="Sole DXB — style"><img src="m/sole-02.jpg" alt="Two women posing under the orange Boxout.fm sign, one in polka dots and one in a Puma King jersey" loading="lazy"><span class="lbl">Style</span></button>
-          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/sole-film-full.mp4" data-cap="Sole DXB — Street Culture film"><video src="m/sole-film-full.mp4" poster="m/sole-film-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Street Culture film</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/sole-film-full.mp4" data-cap="Sole DXB — Street Culture film"><video src="m/sole-film-full-prev.mp4" data-full="m/sole-film-full.mp4" poster="m/sole-film-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Street Culture film</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-05.jpg" data-cap="Sole DXB — style"><img src="m/sole-05.jpg" alt="Woman in a blue crochet face mask and leather jacket beside a man in olive with the Dubai skyline behind" loading="lazy"><span class="lbl">Style</span></button>
         </div>
         <div class="row">
@@ -582,7 +596,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-hug.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-hug.jpg" alt="Guest in crushed velvet hugging a giant Tabasco bottle next to a neon sign" loading="lazy"><span class="lbl">Guests</span></button>
-          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/tabasco-full.mp4" data-cap="Tabasco × Chef Halawa — event film"><video src="m/tabasco-full.mp4" poster="m/tabasco-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
+          <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/tabasco-full.mp4" data-cap="Tabasco × Chef Halawa — event film"><video src="m/tabasco-full-prev.mp4" data-full="m/tabasco-full.mp4" poster="m/tabasco-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-chef.jpg" data-cap="Tabasco × Chef Halawa — the chef"><img src="m/tabasco-chef.jpg" alt="Chef Halawa in his whites serving pastries with tongs in the kitchen" loading="lazy"><span class="lbl">The chef</span></button>
         </div>
         <div class="row">
@@ -638,7 +652,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/nightlife-full.mp4" data-cap="Nightlife — club film"><video src="m/nightlife-full.mp4" poster="m/nightlife.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Club film</span></button>
+          <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/nightlife-full.mp4" data-cap="Nightlife — club film"><video src="m/nightlife-full-prev.mp4" data-full="m/nightlife-full.mp4" poster="m/nightlife.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Club film</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dj-hi.jpg" data-cap="DJ set"><img src="m/dj-hi.jpg" alt="DJ in a keffiyeh under red light and a neon skull" loading="lazy"><span class="lbl">DJ set</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — dj set"><img src="m/bodega-dj.jpg" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
         </div>
@@ -749,6 +763,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="card"><img src="m/skull-fisheye.jpg" alt="Fisheye shot of a neon skull over a crowd" loading="lazy" style="object-position:50% 30%"><div><span class="mono">02</span><h3>EDIT &amp; POST</h3><p>From clean cuts to full edits, finished in the signature VHS look.</p><ul><li>Editing and colour grading</li><li>Social cut-downs, 9:16 and 4:5</li><li>Retro and VHS finishing</li></ul></div></div>
       <div class="card"><img src="m/foosball.jpg" alt="Hooded figures at a foosball table under orange light" loading="lazy"><div><span class="mono">03</span><h3>PHOTOGRAPHY</h3><p>Fashion, street, portrait and event photography.</p><ul><li>Lookbooks and editorials</li><li>Launches and activations</li><li>Portraits</li></ul></div></div>
     </div>
+    <div class="eyebrow mono how-title">How it works</div>
+    <div class="steps-how">
+      <div><span class="mono">01</span><h4>SEND A BRIEF</h4><p>Use the form, email or WhatsApp. Tell me the brand, date, location and what you need.</p></div>
+      <div><span class="mono">02</span><h4>QUOTE IN 48H</h4><p>I reply within 48 hours with ideas, a plan and a clear quote.</p></div>
+      <div><span class="mono">03</span><h4>SHOOT DAY</h4><p>I film and photograph on the day, on location or in the studio.</p></div>
+      <div><span class="mono">04</span><h4>EDIT &amp; DELIVER</h4><p>Edited films and photos, graded in my signature look and delivered on the timeline we agree.</p></div>
+    </div>
   </div>
 </section>
 
@@ -797,6 +818,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   </div>
 </section>
 
+<a class="wa-float" href="https://wa.me/971582229703?text=Hi%20Zeyad%2C%20I%20saw%20your%20website%20and%20have%20a%20project%20in%20mind." target="_blank" rel="noopener" aria-label="Message Zerekat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3 29l7.3-1.9c1.8 1 3.8 1.5 5.8 1.5 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.3 1.1 1.2-4.2-.3-.4a10.4 10.4 0 0 1-1.6-5.5C5.3 9.8 10.1 5 16 5s10.7 4.8 10.7 10.6S21.9 26.1 16 26.1zm5.9-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3z"/></svg></a>
 <footer>
   <div class="wrap mono">
     <span>© 2026 Zeyad Erekat · Zerekat</span>
@@ -837,6 +859,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   function toggle(v,btn){
     var on=v.muted;
     muteAll(v);
+    if(on && v.dataset.full && v.getAttribute('src')!==v.dataset.full){
+      v.src=v.dataset.full; v.loop=true; v.load();
+    }
     v.muted=!on; label(btn,on);
     if(on){ v.preload='auto'; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
   }
@@ -880,7 +905,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   // lightbox
   var lb=document.getElementById('lb'), body=document.getElementById('lbBody'), cap=document.getElementById('lbCap');
   var paused=[];
-  function close(){ body.innerHTML=''; lb.hidden=true; document.body.style.overflow=''; paused.forEach(function(v){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); }); paused=[]; }
+  function close(){ body.innerHTML=''; lb.hidden=true; document.body.style.overflow=''; document.body.classList.remove('lb-open'); paused.forEach(function(v){ var p=v.play(); if(p&&p.catch)p.catch(function(){}); }); paused=[]; }
   function pauseAll(){ paused=[]; document.querySelectorAll('video').forEach(function(v){ if(!v.paused){ v.pause(); paused.push(v);} }); muteAll(null); }
   document.querySelectorAll('.cell').forEach(function(c){
     c.addEventListener('click', function(e){
@@ -893,7 +918,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       else { el=document.createElement('img'); el.src=src; var im=c.querySelector('img'); el.alt=im?im.alt:''; }
       body.appendChild(el);
       cap.textContent=c.getAttribute('data-cap')||'';
-      lb.hidden=false; document.body.style.overflow='hidden';
+      lb.hidden=false; document.body.style.overflow='hidden'; document.body.classList.add('lb-open');
       document.getElementById('lbX').focus();
       if (isV){ var p=el.play(); if(p&&p.catch)p.catch(function(){}); }
     });
