@@ -33,8 +33,8 @@
   --display:"Archivo Black","Arial Black",Impact,sans-serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --mono:"Space Mono","DejaVu Sans Mono",Menlo,monospace;
-  --gut:max(16px, env(safe-area-inset-left, 0px));
-  --gutR:max(16px, env(safe-area-inset-right, 0px));
+  --gut:max(clamp(16px,4vw,48px), env(safe-area-inset-left, 0px));
+  --gutR:max(clamp(16px,4vw,48px), env(safe-area-inset-right, 0px));
   --wrap:1280px;
   color-scheme:dark;
 }
@@ -141,8 +141,10 @@ section{padding-block:clamp(70px,9vw,130px)}
 .filters{display:flex;gap:8px;flex-wrap:wrap}
 .filters button{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--line);padding:9px 14px;border-radius:999px;cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.project{margin-top:clamp(60px,7vw,100px)}
-.phead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 40px;align-items:end;margin-bottom:22px}
+.project{margin-top:clamp(80px,9vw,140px)}
+.phead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 48px;align-items:end;margin-bottom:clamp(28px,3.2vw,48px)}
+.phead h3{padding-top:4px}
+.phead p{line-height:1.6}
 .phead h3{font-size:clamp(40px,6.4vw,92px)}
 .phead p{margin:0;color:var(--muted);max-width:44ch;justify-self:end}
 .phead .mono{color:var(--amber);grid-column:1/-1}
@@ -231,6 +233,61 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   .marquee div,.dot{animation:none}
   html{scroll-behavior:auto}
   .cell img,.cell video{transition:none}
+}
+
+/* ===== ANIMATIONS ===== */
+/* 1. VHS glitch title */
+.hero h1{position:relative}
+.hero h1.glitch{animation:vhsIn 1.3s steps(1) both}
+.hero h1.glitch.tick{animation:vhsTick .45s steps(1) both}
+@keyframes vhsIn{
+ 0%{opacity:0;transform:translateX(-6px);text-shadow:8px 0 rgba(255,59,59,.9),-8px 0 rgba(0,229,255,.8);clip-path:inset(0 0 70% 0)}
+ 8%{opacity:1;clip-path:inset(30% 0 30% 0);transform:translateX(10px)}
+ 16%{clip-path:inset(60% 0 5% 0);transform:translateX(-12px);text-shadow:-10px 0 rgba(255,59,59,.9),10px 0 rgba(0,229,255,.8)}
+ 24%{clip-path:inset(0 0 0 0);transform:translateX(4px);text-shadow:4px 0 rgba(255,59,59,.8),-4px 0 rgba(0,229,255,.7)}
+ 34%{opacity:.6;transform:translateX(0) skewX(-8deg)}
+ 40%{opacity:1;transform:none;text-shadow:3px 0 rgba(255,59,59,.7),-3px 0 rgba(0,229,255,.6)}
+ 52%{clip-path:inset(42% 0 38% 0);transform:translateX(-14px)}
+ 56%{clip-path:inset(0 0 0 0);transform:none}
+ 70%{text-shadow:2px 0 rgba(255,59,59,.5),-2px 0 rgba(0,229,255,.4)}
+ 100%{opacity:1;transform:none;text-shadow:none;clip-path:inset(0 0 0 0)}
+}
+@keyframes vhsTick{
+ 0%{text-shadow:6px 0 rgba(255,59,59,.85),-6px 0 rgba(0,229,255,.75);clip-path:inset(18% 0 52% 0);transform:translateX(8px)}
+ 25%{clip-path:inset(62% 0 8% 0);transform:translateX(-10px)}
+ 50%{clip-path:inset(0 0 0 0);transform:translateX(3px);text-shadow:3px 0 rgba(255,59,59,.6),-3px 0 rgba(0,229,255,.5)}
+ 100%{text-shadow:none;transform:none;clip-path:inset(0 0 0 0)}
+}
+/* 2. Work slides in on scroll (only when JS adds .rv, so content is never hidden without it) */
+.rv{opacity:0;transform:translateY(46px) scale(.985);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.phead.rv{transform:translateY(24px)}
+/* 3. Moving logo wall */
+.logos.marq{display:flex;flex-direction:column;gap:12px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logos.marq .track{display:flex;gap:12px;width:max-content!important;aspect-ratio:auto!important;background:none!important;border:0!important;border-radius:0!important;padding:0!important;align-items:stretch;animation:logoRun var(--dur,48s) linear infinite}
+.logos.marq .track.rev{animation-direction:reverse}
+.logos.marq:hover .track{animation-play-state:paused}
+.logos.marq .track>div{width:clamp(150px,18vw,230px);flex:none;transition:border-color .3s,background .3s,transform .3s}
+.logos.marq .track>div img{opacity:.7;transition:opacity .3s,transform .3s}
+.logos.marq .track>div:hover{border-color:var(--red);transform:translateY(-3px)}
+.logos.marq .track>div:hover img{opacity:1;transform:scale(1.08)}
+@keyframes logoRun{to{transform:translateX(-50%)}}
+/* 4. VHS hover on photos and videos */
+.cell::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px),linear-gradient(180deg,transparent 0 40%,rgba(255,255,255,.12) 45%,transparent 52%) 0 -120%/100% 240% no-repeat;mix-blend-mode:screen;transition:opacity .2s}
+.cell:hover::before,.cell:focus-visible::before{opacity:1;animation:vhsRoll 1.6s linear infinite}
+.cell:hover img,.cell:hover video,.cell:focus-visible img{animation:vhsShift .5s steps(2) 1;filter:saturate(1.35) contrast(1.08)}
+@keyframes vhsRoll{from{background-position:0 0,0 -120%}to{background-position:0 0,0 120%}}
+@keyframes vhsShift{
+ 0%{transform:scale(1.03) translateX(0);filter:saturate(1.35) contrast(1.08) drop-shadow(5px 0 rgba(255,59,59,.55)) drop-shadow(-5px 0 rgba(0,229,255,.45))}
+ 50%{transform:scale(1.03) translateX(-4px) skewX(-2deg);filter:saturate(1.6) contrast(1.15) hue-rotate(-12deg)}
+ 100%{transform:scale(1.03);filter:saturate(1.35) contrast(1.08)}
+}
+@media (prefers-reduced-motion:reduce){
+ .hero h1.glitch,.hero h1.glitch.tick{animation:none}
+ .rv{opacity:1;transform:none;transition:none}
+ .logos.marq .track{animation:none}
+ .cell:hover::before{animation:none}
+ .cell:hover img,.cell:hover video{animation:none}
 }
 </style>
 <style>html,body{margin:0}</style>
@@ -870,6 +927,36 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       try { navigator.clipboard.writeText(txt).then(done, fallback); } catch(e){ fallback(); }
     });
   });
+  // ===== ANIMATIONS =====
+  if(!reduce){
+    // 1. title glitch on load + occasional tick
+    var h1=document.querySelector('.hero h1');
+    if(h1){ h1.classList.add('glitch');
+      setInterval(function(){ h1.classList.remove('tick'); void h1.offsetWidth; h1.classList.add('tick'); }, 7000); }
+    // 2. scroll reveal
+    if('IntersectionObserver' in window){
+      var rvEls=[];
+      document.querySelectorAll('.project .phead').forEach(function(el){ rvEls.push(el); });
+      document.querySelectorAll('.project .row').forEach(function(row){
+        [].forEach.call(row.children,function(c,i){ c.style.setProperty('--d',(i*0.09)+'s'); rvEls.push(c); });
+      });
+      var vh=window.innerHeight;
+      rvEls.forEach(function(el){ if(el.getBoundingClientRect().top>vh*0.9) el.classList.add('rv'); });
+      var rio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rio.unobserve(e.target);} }); },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+      rvEls.forEach(function(el){ if(el.classList.contains('rv')) rio.observe(el); });
+    }
+    // 3. moving logo wall
+    var lw=document.querySelector('.logos');
+    if(lw){
+      var tiles=[].slice.call(lw.children), half=Math.ceil(tiles.length/2);
+      lw.innerHTML=''; lw.classList.add('marq');
+      [tiles.slice(0,half),tiles.slice(half)].forEach(function(set,ri){
+        var t=document.createElement('div'); t.className='track'+(ri?' rev':''); t.style.setProperty('--dur',(ri?54:46)+'s');
+        set.concat(set.map(function(n){ var c=n.cloneNode(true); c.setAttribute('aria-hidden','true'); return c; })).forEach(function(n){ t.appendChild(n); });
+        lw.appendChild(t);
+      });
+    }
+  }
 })();
 </script>
 
