@@ -179,6 +179,14 @@ section{padding-block:clamp(70px,9vw,130px)}
 .project[hidden]{display:none}
 .cell[hidden]{display:none}
 
+.team{margin-top:clamp(56px,7vw,100px)}
+.team .eyebrow{margin-bottom:22px}
+.member{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:end;max-width:720px;border-top:2px solid var(--red);padding-top:22px}
+.member img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%;border-radius:6px;filter:grayscale(1)}
+.member h3{font-size:clamp(30px,3.6vw,48px);margin:8px 0 6px}
+.member .role{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:13px;color:var(--red)}
+.member p{margin:12px 0 18px;color:var(--muted);max-width:36ch}
+@media (max-width:520px){.member{grid-template-columns:minmax(0,140px) minmax(0,1fr);align-items:center}.member p{display:none}.member .btn{padding:11px 14px;font-size:11px;white-space:nowrap}}
 /* SERVICES */
 .services{background:var(--panel)}
 .svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
@@ -722,6 +730,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <div class="stat"><b>6+</b><span>years behind the camera</span></div>
         <div class="stat"><b>15+</b><span>brands and campaigns</span></div>
         <div class="stat"><b>3</b><span>crafts: film, photo, edit</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap team">
+    <div class="eyebrow mono">The team</div>
+    <div class="member">
+      <img src="m/team-mahmoud.jpg" alt="Mahmoud Awada seated on a chair in the studio, black and white" loading="lazy">
+      <div>
+        <span class="role">Business Manager</span>
+        <h3>MAHMOUD AWADA</h3>
+        <p>Bookings, brand partnerships and quotes. Talk to Mahmoud about rates, dates and anything on the business side.</p>
+        <a class="btn" href="#enquire">Make an enquiry</a>
       </div>
     </div>
   </div>
