@@ -209,6 +209,10 @@ section{padding-block:clamp(70px,9vw,130px)}
 .line .acts{display:flex;gap:8px;flex-wrap:wrap}
 .line .acts .btn{padding:10px 14px;font-size:12px}
 @media (max-width:980px){.lines{grid-template-columns:1fr}}
+.dl{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.dl .t{display:flex;flex-direction:column;gap:6px;min-width:0}
+.dl .t b{font-family:var(--display);font-weight:400;font-size:clamp(22px,2.4vw,30px);line-height:1.1}
+.dl .mono{color:var(--muted)}
 .copied{color:var(--amber)!important;border-color:var(--amber)!important}
 .enquire{border-top:1px solid var(--line)}
 .enq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
@@ -784,7 +788,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   <div class="wrap">
     <div class="eyebrow mono"><span><span class="dot"></span>Contact</span></div>
     <h2 id="ctH">LET'S <span class="red">ROLL.</span></h2>
-    <p class="lead" style="max-width:40ch;font-size:clamp(18px,1.8vw,22px);margin:24px 0 0">DM or email for rates and packages. Let's build something unapologetic together.</p>
+    <p class="lead" style="max-width:40ch;font-size:clamp(18px,1.8vw,22px);margin:24px 0 0">Grab the rate card below, or DM and email for a quote. Let's build something unapologetic together.</p>
     <div class="lines">
       <div class="line">
         <span class="mono">Email</span>
@@ -801,6 +805,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <span class="val">@zerekat</span>
         <div class="acts"><a class="btn solid" href="https://www.instagram.com/zerekat/" target="_blank" rel="noopener">Follow on Instagram</a></div>
       </div>
+    </div>
+    <div class="dl">
+      <div class="t"><span class="mono">Rate card 2026 · PDF</span><b>RATES &amp; <span class="red">PACKAGES</span></b></div>
+      <a class="btn solid" href="Zerekat-Rate-Card-2026.pdf" download target="_blank" rel="noopener">↓ Download rate card</a>
     </div>
   </div>
 </section>
@@ -1018,6 +1026,7 @@ var h=a.getAttribute('href')||'';
 if(h.indexOf('wa.me')>-1)ev('whatsapp_click',{link_location:a.classList.contains('wa-float')?'float':'contact'});
 else if(h.indexOf('mailto:')===0)ev('email_click');
 else if(h.indexOf('instagram.com')>-1)ev('instagram_click');
+else if(h.indexOf('Rate-Card')>-1)ev('ratecard_download');
 else if(a.classList.contains('book')||h==='#enquire')ev('book_click');
 if(a.classList.contains('snd')){var c=a.closest('.cell');ev('video_sound_on',{video:c?c.getAttribute('data-cap'):''});}
 else if(a.classList.contains('cell')){ev(a.getAttribute('data-type')==='vid'?'video_open':'photo_open',{item:a.getAttribute('data-cap')});}
