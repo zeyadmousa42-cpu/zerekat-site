@@ -318,6 +318,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 @media (max-width:460px){.steps-how{grid-template-columns:1fr}}
 </style>
 <style>html,body{margin:0}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSPQ6ZV4N5"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HSPQ6ZV4N5');</script>
 </head>
 <body>
 
@@ -947,7 +949,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       var data={name:n,phone:ph,email:em,service:ef.service.value,message:ef.message.value.trim(),_subject:'New enquiry from zerekat.com: '+n,_template:'table',_captcha:'false'};
       fetch('https://formsubmit.co/ajax/hello@zerekat.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function(){ ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); })
+        .then(function(){ ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); if(window.gtag) gtag('event','generate_lead',{method:'enquiry_form'}); })
         .catch(function(){ st.textContent='It didn\'t send. Please email hello@zerekat.com or WhatsApp +971 58 222 9703.'; st.classList.add('err'); })
         .then(function(){ sb.disabled=false; });
     });
@@ -1009,5 +1011,17 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 })();
 </script>
 
+<script>
+(function(){function ev(n,p){if(window.gtag)gtag('event',n,p||{});}
+document.addEventListener('click',function(e){var a=e.target.closest('a,button,.snd');if(!a)return;
+var h=a.getAttribute('href')||'';
+if(h.indexOf('wa.me')>-1)ev('whatsapp_click',{link_location:a.classList.contains('wa-float')?'float':'contact'});
+else if(h.indexOf('mailto:')===0)ev('email_click');
+else if(h.indexOf('instagram.com')>-1)ev('instagram_click');
+else if(a.classList.contains('book')||h==='#enquire')ev('book_click');
+if(a.classList.contains('snd')){var c=a.closest('.cell');ev('video_sound_on',{video:c?c.getAttribute('data-cap'):''});}
+else if(a.classList.contains('cell')){ev(a.getAttribute('data-type')==='vid'?'video_open':'photo_open',{item:a.getAttribute('data-cap')});}
+},true);})();
+</script>
 </body>
 </html>
