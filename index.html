@@ -24,13 +24,13 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://zerekat.com/#zeyad", "name": "Zeyad Erekat", "alternateName": "Zerekat", "jobTitle": "Videographer, Photographer & Editor", "url": "https://zerekat.com/", "image": "https://zerekat.com/m/about-zeyad-2.jpg", "email": "mailto:hello@zerekat.com", "telephone": "+971582229703", "address": {"@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE"}, "knowsAbout": ["Videography", "Photography", "Video editing", "Fashion films", "Event videography", "Brand campaigns"], "sameAs": ["https://www.instagram.com/zerekat/"]}, {"@type": "ProfessionalService", "@id": "https://zerekat.com/#business", "name": "Zerekat", "description": "Dubai videographer and photographer for fashion, streetwear, music, sport and brand events. Filming, photography and editing.", "url": "https://zerekat.com/", "logo": "https://zerekat.com/favicon-512.png", "image": "https://zerekat.com/og-image.jpg", "email": "hello@zerekat.com", "telephone": "+971582229703", "founder": {"@id": "https://zerekat.com/#zeyad"}, "address": {"@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE"}, "areaServed": ["Dubai", "United Arab Emirates", "Middle East"], "priceRange": "$$", "sameAs": ["https://www.instagram.com/zerekat/"]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Archivo:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
 /* Layout: a camera viewfinder you scroll through — full-bleed film hero, then "scenes" of work, each a reel strip of video + stills. Single dark look by choice. */
 :root{
   --bg:#0e0f12; --panel:#17181d; --tile:#0b0b0d; --line:#26272d;
   --fg:#f2efe9; --muted:#a9a6a0; --red:#ff3b3b; --amber:#ff9a1f;
-  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --display:"Anton","Archivo Black",Impact,sans-serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --mono:"Space Mono","DejaVu Sans Mono",Menlo,monospace;
   --gut:max(clamp(16px,4vw,48px), env(safe-area-inset-left, 0px));
@@ -48,7 +48,7 @@ a{color:inherit}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--gut);padding-right:var(--gutR)}
 .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:12px}
-h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:.92;letter-spacing:-.02em}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:.95;letter-spacing:.005em}
 .dot{display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--red);vertical-align:.02em;margin-right:.45em;animation:blink 1.2s steps(1) infinite}
 @keyframes blink{50%{opacity:.15}}
 
@@ -79,7 +79,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;l
 .vf i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
 .hud{position:absolute;top:clamp(30px,5vw,58px);left:0;right:0;display:flex;justify-content:space-between;padding-left:calc(var(--gut) + 24px);padding-right:calc(var(--gutR) + 24px);font-family:var(--mono);font-size:13px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
 .hero .wrap{width:100%;padding-block:0 clamp(48px,7vw,90px)}
-.hero h1{font-size:clamp(64px,15.5vw,230px);letter-spacing:-.045em;line-height:.82}
+.hero h1{font-size:clamp(64px,15.5vw,230px);letter-spacing:-.005em;line-height:.88}
 .hero h1 em{font-style:normal;color:var(--red)}
 .hero .sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;margin-top:22px}
 .hero p{max-width:34ch;font-size:clamp(17px,1.6vw,21px);margin:0}
@@ -201,7 +201,7 @@ section{padding-block:clamp(70px,9vw,130px)}
 @media (max-width:860px){.svc{grid-template-columns:1fr;max-width:520px}}
 
 /* CONTACT */
-.contact h2{font-size:clamp(64px,15vw,220px);letter-spacing:-.045em;line-height:.82}
+.contact h2{font-size:clamp(64px,15vw,220px);letter-spacing:-.005em;line-height:.88}
 .lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
 .line{border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .line .mono{color:var(--muted)}
