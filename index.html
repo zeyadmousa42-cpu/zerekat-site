@@ -29,7 +29,7 @@
 /* Layout: a camera viewfinder you scroll through — full-bleed film hero, then "scenes" of work, each a reel strip of video + stills. Single dark look by choice. */
 :root{
   --bg:#0e0f12; --panel:#17181d; --tile:#0b0b0d; --line:#26272d;
-  --fg:#f2efe9; --muted:#a9a6a0; --red:#ff3b3b; --amber:#ff9a1f;
+  --fg:#f2efe9; --muted:#a9a6a0; --red:#f4353f; --amber:#ff9a1f;
   --display:"Anton","Archivo Black",Impact,sans-serif;
   --body:"Archivo","Helvetica Neue",Arial,sans-serif;
   --mono:"Space Mono","DejaVu Sans Mono",Menlo,monospace;
@@ -254,21 +254,21 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .hero h1.glitch{animation:vhsIn 1.3s steps(1) backwards}
 .hero h1.glitch.tick{animation:vhsTick .45s steps(1)}
 @keyframes vhsIn{
- 0%{opacity:0;transform:translateX(-6px);text-shadow:8px 0 rgba(255,59,59,.9),-8px 0 rgba(0,229,255,.8);clip-path:inset(0 -12% 70% -4%)}
+ 0%{opacity:0;transform:translateX(-6px);text-shadow:8px 0 rgba(244,53,63,.9),-8px 0 rgba(0,229,255,.8);clip-path:inset(0 -12% 70% -4%)}
  8%{opacity:1;clip-path:inset(30% -12% 30% -4%);transform:translateX(10px)}
- 16%{clip-path:inset(60% -12% 5% -4%);transform:translateX(-12px);text-shadow:-10px 0 rgba(255,59,59,.9),10px 0 rgba(0,229,255,.8)}
- 24%{clip-path:inset(0 -12% 0 -4%);transform:translateX(4px);text-shadow:4px 0 rgba(255,59,59,.8),-4px 0 rgba(0,229,255,.7)}
+ 16%{clip-path:inset(60% -12% 5% -4%);transform:translateX(-12px);text-shadow:-10px 0 rgba(244,53,63,.9),10px 0 rgba(0,229,255,.8)}
+ 24%{clip-path:inset(0 -12% 0 -4%);transform:translateX(4px);text-shadow:4px 0 rgba(244,53,63,.8),-4px 0 rgba(0,229,255,.7)}
  34%{opacity:.6;transform:translateX(0) skewX(-8deg)}
- 40%{opacity:1;transform:none;text-shadow:3px 0 rgba(255,59,59,.7),-3px 0 rgba(0,229,255,.6)}
+ 40%{opacity:1;transform:none;text-shadow:3px 0 rgba(244,53,63,.7),-3px 0 rgba(0,229,255,.6)}
  52%{clip-path:inset(42% -12% 38% -4%);transform:translateX(-14px)}
  56%{clip-path:inset(0 -12% 0 -4%);transform:none}
- 70%{text-shadow:2px 0 rgba(255,59,59,.5),-2px 0 rgba(0,229,255,.4)}
+ 70%{text-shadow:2px 0 rgba(244,53,63,.5),-2px 0 rgba(0,229,255,.4)}
  100%{opacity:1;transform:none;text-shadow:none;clip-path:inset(0 -12% 0 -4%)}
 }
 @keyframes vhsTick{
- 0%{text-shadow:6px 0 rgba(255,59,59,.85),-6px 0 rgba(0,229,255,.75);clip-path:inset(18% -12% 52% -4%);transform:translateX(8px)}
+ 0%{text-shadow:6px 0 rgba(244,53,63,.85),-6px 0 rgba(0,229,255,.75);clip-path:inset(18% -12% 52% -4%);transform:translateX(8px)}
  25%{clip-path:inset(62% -12% 8% -4%);transform:translateX(-10px)}
- 50%{clip-path:inset(0 -12% 0 -4%);transform:translateX(3px);text-shadow:3px 0 rgba(255,59,59,.6),-3px 0 rgba(0,229,255,.5)}
+ 50%{clip-path:inset(0 -12% 0 -4%);transform:translateX(3px);text-shadow:3px 0 rgba(244,53,63,.6),-3px 0 rgba(0,229,255,.5)}
  100%{text-shadow:none;transform:none;clip-path:inset(0 -12% 0 -4%)}
 }
 /* 2. Work slides in on scroll (only when JS adds .rv, so content is never hidden without it) */
@@ -291,7 +291,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .cell:hover img,.cell:hover video,.cell:focus-visible img{animation:vhsShift .5s steps(2) 1;filter:saturate(1.35) contrast(1.08)}
 @keyframes vhsRoll{from{background-position:0 0,0 -120%}to{background-position:0 0,0 120%}}
 @keyframes vhsShift{
- 0%{transform:scale(1.03) translateX(0);filter:saturate(1.35) contrast(1.08) drop-shadow(5px 0 rgba(255,59,59,.55)) drop-shadow(-5px 0 rgba(0,229,255,.45))}
+ 0%{transform:scale(1.03) translateX(0);filter:saturate(1.35) contrast(1.08) drop-shadow(5px 0 rgba(244,53,63,.55)) drop-shadow(-5px 0 rgba(0,229,255,.45))}
  50%{transform:scale(1.03) translateX(-4px) skewX(-2deg);filter:saturate(1.6) contrast(1.15) hue-rotate(-12deg)}
  100%{transform:scale(1.03);filter:saturate(1.35) contrast(1.08)}
 }
