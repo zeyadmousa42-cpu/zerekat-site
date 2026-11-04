@@ -233,6 +233,8 @@ section{padding-block:clamp(70px,9vw,130px)}
 .form .status{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--muted)}
 .form .status.ok{color:var(--amber)}
 .form .status.err{color:var(--red)}
+.form .status .fallback{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.form .status .fallback .btn{font-size:12px;padding:11px 16px}
 .form .btn[disabled]{opacity:.6;cursor:wait}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 @media (max-width:820px){.enq{grid-template-columns:1fr}}
@@ -972,11 +974,25 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       if(ef._honey.value){ return; }
       sb.disabled=true; st.textContent='Sending\u2026';
       var data={name:n,phone:ph,email:em,service:ef.service.value,message:ef.message.value.trim(),_subject:'New enquiry from zerekat.com: '+n,_template:'table',_captcha:'false'};
-      fetch('https://formsubmit.co/ajax/hello@zerekat.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      var body='Hi Zeyad, I want to book a shoot.\n\nName: '+n+'\nPhone: '+ph+'\nEmail: '+em+'\nService: '+data.service+(data.message?'\n\n'+data.message:'');
+      var wa='https://wa.me/971582229703?text='+encodeURIComponent(body);
+      var ml='mailto:hello@zerekat.com?subject='+encodeURIComponent('Project enquiry: '+n)+'&body='+encodeURIComponent(body);
+      var ctl=window.AbortController?new AbortController():null, tm=setTimeout(function(){ if(ctl) ctl.abort(); },9000);
+      fetch('https://formsubmit.co/ajax/hello@zerekat.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl?ctl.signal:undefined})
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function(){ ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); if(window.gtag) gtag('event','generate_lead',{method:'enquiry_form'}); })
-        .catch(function(){ st.textContent='It didn\'t send. Please email hello@zerekat.com or WhatsApp +971 58 222 9703.'; st.classList.add('err'); })
-        .then(function(){ sb.disabled=false; });
+        .then(function(j){ if(j && (j.success===false||j.success==='false')) throw new Error('fail'); ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); if(window.gtag) gtag('event','generate_lead',{method:'enquiry_form'}); })
+        .catch(function(){
+          st.innerHTML='';
+          st.classList.add('err');
+          st.appendChild(document.createTextNode('The form is having trouble. Your message is ready, just tap send:'));
+          var box=document.createElement('span'); box.className='fallback';
+          var a1=document.createElement('a'); a1.className='btn solid'; a1.href=wa; a1.target='_blank'; a1.rel='noopener'; a1.textContent='Send on WhatsApp';
+          var a2=document.createElement('a'); a2.className='btn'; a2.href=ml; a2.textContent='Send by email';
+          a1.addEventListener('click',function(){ if(window.gtag) gtag('event','generate_lead',{method:'form_fallback_whatsapp'}); });
+          a2.addEventListener('click',function(){ if(window.gtag) gtag('event','generate_lead',{method:'form_fallback_email'}); });
+          box.appendChild(a1); box.appendChild(a2); st.appendChild(box);
+        })
+        .then(function(){ clearTimeout(tm); sb.disabled=false; });
     });
   }
 
