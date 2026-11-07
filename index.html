@@ -80,6 +80,13 @@ h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;l
 .vf i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
 .vf i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
 .hud{position:absolute;top:clamp(30px,5vw,58px);left:0;right:0;display:flex;justify-content:space-between;padding-left:calc(var(--gut) + 24px);padding-right:calc(var(--gutR) + 24px);font-family:var(--mono);font-size:13px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.avail{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:9px 16px 9px 12px;border:1px solid rgba(242,239,233,.28);border-radius:999px;background:rgba(14,15,18,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--fg);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.avail b{color:var(--amber);font-weight:700}
+.avail i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 0 rgba(244,53,63,.7);animation:availPulse 1.8s infinite}
+.avail:hover{border-color:var(--red)}
+@keyframes availPulse{0%{box-shadow:0 0 0 0 rgba(244,53,63,.7)}70%{box-shadow:0 0 0 9px rgba(244,53,63,0)}100%{box-shadow:0 0 0 0 rgba(244,53,63,0)}}
+@media (max-width:520px){.avail{font-size:11px;letter-spacing:.08em}.avail .q{display:none}}
+@media (prefers-reduced-motion:reduce){.avail i{animation:none}}
 .hero .wrap{width:100%;padding-block:0 clamp(48px,7vw,90px)}
 .hero h1{font-family:"Archivo Black","Arial Black",Impact,sans-serif;font-size:clamp(64px,15.5vw,230px);letter-spacing:-.045em;line-height:.82}
 .hero h1 em{font-style:normal;color:var(--red)}
@@ -346,11 +353,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 
 <header class="hero" id="top">
   <img class="poster" src="m/film-intro.jpg" alt="">
-  <video id="heroVid" src="m/film-intro.mp4" poster="m/film-intro.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
+  <video id="heroVid" data-src="m/film-intro.mp4" poster="m/film-intro.jpg" muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
   <div class="vf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <button class="hero-snd" id="heroSnd" type="button" aria-pressed="false">♪ Sound on</button>
   <div class="hud" aria-hidden="true"><span><span class="dot"></span>REC</span><span id="tc">00:00:00:00</span></div>
   <div class="wrap">
+    <a class="avail" href="#enquire" id="avail"><i aria-hidden="true"></i><span>Now booking <b id="availM">December</b></span><span class="q"> · Fixed quote in 48 hours</span></a>
     <div class="tag">VIDEOGRAPHY · PHOTOGRAPHY · EDITING — DUBAI</div>
     <h1>ZEREKAT<em>.</em><span class="vh"> Dubai Videographer &amp; Photographer</span></h1>
     <div class="sub">
@@ -431,7 +439,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <div class="row">
           <button class="cell vid p" style="--ar:0.75" data-type="vid" data-src="m/kindness-full.mp4" data-cap="MrBeast — campaign edit"><video src="m/kindness-full-prev.mp4" data-full="m/kindness-full.mp4" poster="m/kindness-edit.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Campaign edit</span></button>
           <button class="cell vid l" style="--ar:1.499" data-type="vid" data-src="m/ghana-bts-full.mp4" data-cap="MrBeast — Ghana BTS"><video src="m/ghana-bts-full-prev.mp4" data-full="m/ghana-bts-full.mp4" poster="m/ghana-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Ghana BTS film</span></button>
-          <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ghana-mural.jpg" data-cap="Ghana — on location"><img src="m/ghana-mural.jpg" alt="Crowd in front of a colourful mural in Ghana" loading="lazy" style="object-position:50% 40%"><span class="lbl">On location</span></button>
+          <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ghana-mural.jpg" data-cap="Ghana — on location"><img src="m/ghana-mural.jpg" srcset="m/sm/ghana-mural.jpg 600w, m/ghana-mural.jpg 1200w" sizes="(max-width:600px) 45vw, 23vw" alt="Crowd in front of a colourful mural in Ghana" loading="lazy" style="object-position:50% 40%"><span class="lbl">On location</span></button>
         </div>
       </div>
     </article>
@@ -449,7 +457,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
           <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/iniesta-bts.mp4" data-cap="On the pitch — BTS"><video src="m/iniesta-bts-prev.mp4" data-full="m/iniesta-bts.mp4" poster="m/iniesta-bts.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">BTS reel</span></button>
         </div>
         <div class="row">
-          <button class="cell l" style="--ar:1.778" data-type="photo" data-src="m/stadium.jpg" data-cap="Pitch-side"><img src="m/stadium.jpg" alt="Stadium stand seen through a blurred foreground" loading="lazy"><span class="lbl">Pitch-side</span></button>
+          <button class="cell l" style="--ar:1.778" data-type="photo" data-src="m/stadium.jpg" data-cap="Pitch-side"><img src="m/stadium.jpg" srcset="m/sm/stadium.jpg 600w, m/stadium.jpg 1600w" sizes="(max-width:600px) 92vw, 92vw" alt="Stadium stand seen through a blurred foreground" loading="lazy"><span class="lbl">Pitch-side</span></button>
         </div>
       </div>
     </article>
@@ -463,15 +471,15 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-01.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-01.jpg" alt="Guest in an AC Milan shirt with a camera, laughing and holding up two red Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-01.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-01.jpg" srcset="m/sm/favela-01.jpg 600w, m/favela-01.jpg 1067w" sizes="(max-width:600px) 45vw, 24vw" alt="Guest in an AC Milan shirt with a camera, laughing and holding up two red Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
           <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/favela-full.mp4" data-cap="adidas × Dè Favela — Predator launch (event film)"><video src="m/favela-full-prev.mp4" data-full="m/favela-full.mp4" poster="m/favela-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-04.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-04.jpg" alt="Guest in a striped football crop top holding a Predator boot to her ear like a phone" loading="lazy"><span class="lbl">Predator launch</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-06.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-06.jpg" alt="Guest in sunglasses holding two Predator boots either side of his head" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-04.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-04.jpg" srcset="m/sm/favela-04.jpg 600w, m/favela-04.jpg 1067w" sizes="(max-width:600px) 45vw, 24vw" alt="Guest in a striped football crop top holding a Predator boot to her ear like a phone" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-06.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-06.jpg" srcset="m/sm/favela-06.jpg 600w, m/favela-06.jpg 1067w" sizes="(max-width:600px) 45vw, 24vw" alt="Guest in sunglasses holding two Predator boots either side of his head" loading="lazy"><span class="lbl">Predator launch</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-02.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-02.jpg" alt="Guest in a green adidas shirt showing the Predator sole" loading="lazy"><span class="lbl">Predator launch</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-05.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-05.jpg" alt="Guest in a Dè Favela shirt and knitted hood holding two Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-03.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-03.jpg" alt="Guest in a denim jacket holding a red Predator boot to her cheek" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-02.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-02.jpg" srcset="m/sm/favela-02.jpg 600w, m/favela-02.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Guest in a green adidas shirt showing the Predator sole" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-05.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-05.jpg" srcset="m/sm/favela-05.jpg 600w, m/favela-05.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Guest in a Dè Favela shirt and knitted hood holding two Predator boots" loading="lazy"><span class="lbl">Predator launch</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/favela-03.jpg" data-cap="adidas × Dè Favela — Predator launch"><img src="m/favela-03.jpg" srcset="m/sm/favela-03.jpg 600w, m/favela-03.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="Guest in a denim jacket holding a red Predator boot to her cheek" loading="lazy"><span class="lbl">Predator launch</span></button>
         </div>
       </div>
     </article>
@@ -488,12 +496,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
           <button class="cell vid l" style="--ar:1.776" data-type="vid" data-src="m/night-shoot-full.mp4" data-cap="Porsche — After Dark film"><video src="m/night-shoot-full-prev.mp4" data-full="m/night-shoot-full.mp4" poster="m/night-shoot.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">After Dark film</span></button>
         </div>
         <div class="row">
-          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/porsche-night.jpg" data-cap="Porsche — on location"><img src="m/porsche-night.jpg" alt="Three women standing by a yellow Porsche at night" loading="lazy"><span class="lbl">On location</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-woman.jpg" data-cap="Porsche — night"><img src="m/porsche-woman.jpg" alt="Woman leaning on a Porsche at night" loading="lazy"><span class="lbl">Night</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/porsche-night.jpg" data-cap="Porsche — on location"><img src="m/porsche-night.jpg" srcset="m/sm/porsche-night.jpg 600w, m/porsche-night.jpg 1200w" sizes="(max-width:600px) 92vw, 64vw" alt="Three women standing by a yellow Porsche at night" loading="lazy"><span class="lbl">On location</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-woman.jpg" data-cap="Porsche — night"><img src="m/porsche-woman.jpg" srcset="m/sm/porsche-woman.jpg 600w, m/porsche-woman.jpg 1066w" sizes="(max-width:600px) 45vw, 29vw" alt="Woman leaning on a Porsche at night" loading="lazy"><span class="lbl">Night</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-trio.jpg" data-cap="Porsche — inside"><img src="m/porsche-trio.jpg" alt="Three women in fur coats in the back of a yellow Porsche, one lowering her sunglasses" loading="lazy"><span class="lbl">Inside</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-wave.jpg" data-cap="Porsche — inside"><img src="m/porsche-wave.jpg" alt="Woman in a fur coat waving through the window of a yellow Porsche" loading="lazy"><span class="lbl">Inside</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-trio.jpg" data-cap="Porsche — inside"><img src="m/porsche-trio.jpg" srcset="m/sm/porsche-trio.jpg 600w, m/porsche-trio.jpg 1066w" sizes="(max-width:600px) 45vw, 46vw" alt="Three women in fur coats in the back of a yellow Porsche, one lowering her sunglasses" loading="lazy"><span class="lbl">Inside</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/porsche-wave.jpg" data-cap="Porsche — inside"><img src="m/porsche-wave.jpg" srcset="m/sm/porsche-wave.jpg 600w, m/porsche-wave.jpg 1066w" sizes="(max-width:600px) 92vw, 46vw" alt="Woman in a fur coat waving through the window of a yellow Porsche" loading="lazy"><span class="lbl">Inside</span></button>
         </div>
       </div>
     </article>
@@ -508,15 +516,15 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell vid p" style="--ar:0.75" data-type="vid" data-src="m/ferrari-film.mp4" data-cap="Ferrari — showroom film"><video src="m/ferrari-film-prev.mp4" data-full="m/ferrari-film.mp4" poster="m/ferrari-film.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Showroom film</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-red-front.jpg" data-cap="Ferrari — showroom"><img src="m/ferrari-red-front.jpg" alt="Red Ferrari 296 in front of the Ferrari wall in the showroom" loading="lazy"><span class="lbl">Showroom</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-classic-front.jpg" data-cap="Ferrari — classic racer"><img src="m/ferrari-classic-front.jpg" alt="White classic Ferrari racer with blue stripes and the number 75" loading="lazy"><span class="lbl">Classic</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-f1-car.jpg" data-cap="Ferrari — Formula 1 car"><img src="m/ferrari-f1-car.jpg" alt="Ferrari Formula 1 car behind red ropes in the showroom" loading="lazy"><span class="lbl">F1</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-red-front.jpg" data-cap="Ferrari — showroom"><img src="m/ferrari-red-front.jpg" srcset="m/sm/ferrari-red-front.jpg 600w, m/ferrari-red-front.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="Red Ferrari 296 in front of the Ferrari wall in the showroom" loading="lazy"><span class="lbl">Showroom</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-classic-front.jpg" data-cap="Ferrari — classic racer"><img src="m/ferrari-classic-front.jpg" srcset="m/sm/ferrari-classic-front.jpg 600w, m/ferrari-classic-front.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="White classic Ferrari racer with blue stripes and the number 75" loading="lazy"><span class="lbl">Classic</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-f1-car.jpg" data-cap="Ferrari — Formula 1 car"><img src="m/ferrari-f1-car.jpg" srcset="m/sm/ferrari-f1-car.jpg 600w, m/ferrari-f1-car.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="Ferrari Formula 1 car behind red ropes in the showroom" loading="lazy"><span class="lbl">F1</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-wheel.jpg" data-cap="Ferrari — details"><img src="m/ferrari-wheel.jpg" alt="Ferrari wheel with a yellow brake caliper" loading="lazy"><span class="lbl">Details</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-classic-wheel.jpg" data-cap="Ferrari — details"><img src="m/ferrari-classic-wheel.jpg" alt="Wooden steering wheel with the yellow Ferrari badge and red leather seat" loading="lazy"><span class="lbl">Details</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-engine.jpg" data-cap="Ferrari — 812 GTS engine"><img src="m/ferrari-engine.jpg" alt="Ferrari 812 GTS V12 engine on display" loading="lazy"><span class="lbl">Engine</span></button>
-          <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ferrari-white-front.jpg" data-cap="Ferrari — Tailor Made"><img src="m/ferrari-white-front.jpg" alt="White Ferrari in front of a wall of leather colour swatches" loading="lazy"><span class="lbl">Tailor Made</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-wheel.jpg" data-cap="Ferrari — details"><img src="m/ferrari-wheel.jpg" srcset="m/sm/ferrari-wheel.jpg 600w, m/ferrari-wheel.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="Ferrari wheel with a yellow brake caliper" loading="lazy"><span class="lbl">Details</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-classic-wheel.jpg" data-cap="Ferrari — details"><img src="m/ferrari-classic-wheel.jpg" srcset="m/sm/ferrari-classic-wheel.jpg 600w, m/ferrari-classic-wheel.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="Wooden steering wheel with the yellow Ferrari badge and red leather seat" loading="lazy"><span class="lbl">Details</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/ferrari-engine.jpg" data-cap="Ferrari — 812 GTS engine"><img src="m/ferrari-engine.jpg" srcset="m/sm/ferrari-engine.jpg 600w, m/ferrari-engine.jpg 1066w" sizes="(max-width:600px) 45vw, 22vw" alt="Ferrari 812 GTS V12 engine on display" loading="lazy"><span class="lbl">Engine</span></button>
+          <button class="cell p" style="--ar:0.75" data-type="photo" data-src="m/ferrari-white-front.jpg" data-cap="Ferrari — Tailor Made"><img src="m/ferrari-white-front.jpg" srcset="m/sm/ferrari-white-front.jpg 600w, m/ferrari-white-front.jpg 1066w" sizes="(max-width:600px) 45vw, 25vw" alt="White Ferrari in front of a wall of leather colour swatches" loading="lazy"><span class="lbl">Tailor Made</span></button>
         </div>
       </div>
     </article>
@@ -530,11 +538,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-drive.jpg" data-cap="Dubai Basketball x adidas — the drive"><img src="m/dbb-drive.jpg" alt="Dubai Basketball guard in a white adidas kit dribbling past the courtside boards" loading="lazy"><span class="lbl">The drive</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-shot.jpg" data-cap="Dubai Basketball x adidas — the shot"><img src="m/dbb-shot.jpg" alt="Dubai Basketball player rising for a shot under the shot clock, seen from behind the crowd" loading="lazy"><span class="lbl">The shot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-dunk.jpg" data-cap="Dubai Basketball x adidas — the dunk"><img src="m/dbb-dunk.jpg" alt="Dubai Basketball number 22 hanging on the rim after a dunk" loading="lazy"><span class="lbl">The dunk</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-duel.jpg" data-cap="Dubai Basketball x adidas — one on one"><img src="m/dbb-duel.jpg" alt="Dubai Basketball number 1 facing up against Teodosić of Crvena Zvezda" loading="lazy"><span class="lbl">One on one</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-mason.jpg" data-cap="Dubai Basketball x adidas — between plays"><img src="m/dbb-mason.jpg" alt="Mason, number 1, standing hands on hips with his back to the camera" loading="lazy"><span class="lbl">Between plays</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-drive.jpg" data-cap="Dubai Basketball x adidas — the drive"><img src="m/dbb-drive.jpg" srcset="m/sm/dbb-drive.jpg 600w, m/dbb-drive.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball guard in a white adidas kit dribbling past the courtside boards" loading="lazy"><span class="lbl">The drive</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-shot.jpg" data-cap="Dubai Basketball x adidas — the shot"><img src="m/dbb-shot.jpg" srcset="m/sm/dbb-shot.jpg 600w, m/dbb-shot.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball player rising for a shot under the shot clock, seen from behind the crowd" loading="lazy"><span class="lbl">The shot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-dunk.jpg" data-cap="Dubai Basketball x adidas — the dunk"><img src="m/dbb-dunk.jpg" srcset="m/sm/dbb-dunk.jpg 600w, m/dbb-dunk.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 22 hanging on the rim after a dunk" loading="lazy"><span class="lbl">The dunk</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-duel.jpg" data-cap="Dubai Basketball x adidas — one on one"><img src="m/dbb-duel.jpg" srcset="m/sm/dbb-duel.jpg 600w, m/dbb-duel.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 1 facing up against Teodosić of Crvena Zvezda" loading="lazy"><span class="lbl">One on one</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-mason.jpg" data-cap="Dubai Basketball x adidas — between plays"><img src="m/dbb-mason.jpg" srcset="m/sm/dbb-mason.jpg 600w, m/dbb-mason.jpg 1067w" sizes="(max-width:600px) 92vw, 18vw" alt="Mason, number 1, standing hands on hips with his back to the camera" loading="lazy"><span class="lbl">Between plays</span></button>
         </div>
       </div>
     </article>
@@ -548,9 +556,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-hands.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-hands.jpg" alt="Hands with silver rings holding black and magenta New Balance sneakers with lace socks" loading="lazy"><span class="lbl">Detail</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-door.jpg" data-cap="New Balance 1906 — look"><img src="m/nb-door.jpg" alt="Woman in a black bomber kicking one leg up in front of an old wooden door" loading="lazy"><span class="lbl">Look</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-wall.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-wall.jpg" alt="New Balance 1906 sneakers pressed against a clay wall" loading="lazy"><span class="lbl">Detail</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-hands.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-hands.jpg" srcset="m/sm/nb-hands.jpg 600w, m/nb-hands.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Hands with silver rings holding black and magenta New Balance sneakers with lace socks" loading="lazy"><span class="lbl">Detail</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-door.jpg" data-cap="New Balance 1906 — look"><img src="m/nb-door.jpg" srcset="m/sm/nb-door.jpg 600w, m/nb-door.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Woman in a black bomber kicking one leg up in front of an old wooden door" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/nb-wall.jpg" data-cap="New Balance 1906 — detail"><img src="m/nb-wall.jpg" srcset="m/sm/nb-wall.jpg 600w, m/nb-wall.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="New Balance 1906 sneakers pressed against a clay wall" loading="lazy"><span class="lbl">Detail</span></button>
         </div>
       </div>
     </article>
@@ -564,9 +572,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-stage.jpg" data-cap="Quavo — on stage"><img src="m/quavo-stage.jpg" alt="Quavo on stage in sunglasses, chains and crystal denim shorts in front of his name on the screen" loading="lazy"><span class="lbl">On stage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo.jpg" data-cap="Quavo — black &amp; white"><img src="m/quavo.jpg" alt="Quavo performing, black and white" loading="lazy"><span class="lbl">Black &amp; white</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-smoke.jpg" data-cap="Quavo — in the smoke"><img src="m/quavo-smoke.jpg" alt="Quavo turned away from the camera in stage smoke and coloured light" loading="lazy"><span class="lbl">In the smoke</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-stage.jpg" data-cap="Quavo — on stage"><img src="m/quavo-stage.jpg" srcset="m/sm/quavo-stage.jpg 600w, m/quavo-stage.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Quavo on stage in sunglasses, chains and crystal denim shorts in front of his name on the screen" loading="lazy"><span class="lbl">On stage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo.jpg" data-cap="Quavo — black &amp; white"><img src="m/quavo.jpg" srcset="m/sm/quavo.jpg 600w, m/quavo.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Quavo performing, black and white" loading="lazy"><span class="lbl">Black &amp; white</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/quavo-smoke.jpg" data-cap="Quavo — in the smoke"><img src="m/quavo-smoke.jpg" srcset="m/sm/quavo-smoke.jpg 600w, m/quavo-smoke.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="Quavo turned away from the camera in stage smoke and coloured light" loading="lazy"><span class="lbl">In the smoke</span></button>
         </div>
       </div>
     </article>
@@ -581,20 +589,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/kaytranada-full.mp4" data-cap="Sole DXB — Kaytranada live"><video src="m/kaytranada-full-prev.mp4" data-full="m/kaytranada-full.mp4" poster="m/kaytranada-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Kaytranada live</span></button>
-          <button class="cell p" style="--ar:0.8" data-type="photo" data-src="m/sole-stage.jpg" data-cap="Sole DXB — main stage"><img src="m/sole-stage.jpg" alt="Sole DXB stage with light panels" loading="lazy"><span class="lbl">Main stage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — dj set"><img src="m/sole-03.jpg" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-01.jpg" data-cap="Sole DXB — style"><img src="m/sole-01.jpg" alt="Two men in sunglasses, one in raw denim and one in a red racing jacket, in front of lit scaffolding" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.8" data-type="photo" data-src="m/sole-stage.jpg" data-cap="Sole DXB — main stage"><img src="m/sole-stage.jpg" srcset="m/sm/sole-stage.jpg 600w, m/sole-stage.jpg 1400w" sizes="(max-width:600px) 45vw, 27vw" alt="Sole DXB stage with light panels" loading="lazy"><span class="lbl">Main stage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — dj set"><img src="m/sole-03.jpg" srcset="m/sm/sole-03.jpg 600w, m/sole-03.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-01.jpg" data-cap="Sole DXB — style"><img src="m/sole-01.jpg" srcset="m/sm/sole-01.jpg 600w, m/sole-01.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Two men in sunglasses, one in raw denim and one in a red racing jacket, in front of lit scaffolding" loading="lazy"><span class="lbl">Style</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-04.jpg" data-cap="Sole DXB — style"><img src="m/sole-04.jpg" alt="Man in a raw denim jacket with a leather collar standing among the festival stalls" loading="lazy"><span class="lbl">Style</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-02.jpg" data-cap="Sole DXB — style"><img src="m/sole-02.jpg" alt="Two women posing under the orange Boxout.fm sign, one in polka dots and one in a Puma King jersey" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-04.jpg" data-cap="Sole DXB — style"><img src="m/sole-04.jpg" srcset="m/sm/sole-04.jpg 600w, m/sole-04.jpg 1067w" sizes="(max-width:600px) 45vw, 22vw" alt="Man in a raw denim jacket with a leather collar standing among the festival stalls" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-02.jpg" data-cap="Sole DXB — style"><img src="m/sole-02.jpg" srcset="m/sm/sole-02.jpg 600w, m/sole-02.jpg 1067w" sizes="(max-width:600px) 45vw, 22vw" alt="Two women posing under the orange Boxout.fm sign, one in polka dots and one in a Puma King jersey" loading="lazy"><span class="lbl">Style</span></button>
           <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/sole-film-full.mp4" data-cap="Sole DXB — Street Culture film"><video src="m/sole-film-full-prev.mp4" data-full="m/sole-film-full.mp4" poster="m/sole-film-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Street Culture film</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-05.jpg" data-cap="Sole DXB — style"><img src="m/sole-05.jpg" alt="Woman in a blue crochet face mask and leather jacket beside a man in olive with the Dubai skyline behind" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-05.jpg" data-cap="Sole DXB — style"><img src="m/sole-05.jpg" srcset="m/sm/sole-05.jpg 600w, m/sole-05.jpg 1067w" sizes="(max-width:600px) 45vw, 22vw" alt="Woman in a blue crochet face mask and leather jacket beside a man in olive with the Dubai skyline behind" loading="lazy"><span class="lbl">Style</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-08.jpg" data-cap="Sole DXB — the crowd"><img src="m/sole-08.jpg" alt="Man in a white vest grinning and pointing at his eye in the red-lit crowd" loading="lazy"><span class="lbl">The crowd</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-06.jpg" data-cap="Sole DXB — style"><img src="m/sole-06.jpg" alt="Two women in black leather and pleats, one in a knitted pointed hat" loading="lazy"><span class="lbl">Style</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-07.jpg" data-cap="Sole DXB — style"><img src="m/sole-07.jpg" alt="Two friends in lace, mesh and tattoos smiling at the camera at night" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-08.jpg" data-cap="Sole DXB — the crowd"><img src="m/sole-08.jpg" srcset="m/sm/sole-08.jpg 600w, m/sole-08.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Man in a white vest grinning and pointing at his eye in the red-lit crowd" loading="lazy"><span class="lbl">The crowd</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-06.jpg" data-cap="Sole DXB — style"><img src="m/sole-06.jpg" srcset="m/sm/sole-06.jpg 600w, m/sole-06.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Two women in black leather and pleats, one in a knitted pointed hat" loading="lazy"><span class="lbl">Style</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-07.jpg" data-cap="Sole DXB — style"><img src="m/sole-07.jpg" srcset="m/sm/sole-07.jpg 600w, m/sole-07.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="Two friends in lace, mesh and tattoos smiling at the camera at night" loading="lazy"><span class="lbl">Style</span></button>
         </div>
       </div>
     </article>
@@ -608,20 +616,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-coat.jpg" data-cap="Born in Exile — lookbook"><img src="m/bie-coat.jpg" alt="Model in a long black leather coat between two standing panels" loading="lazy"><span class="lbl">Lookbook</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-styling.jpg" data-cap="Born in Exile — styling on set"><img src="m/bie-styling.jpg" alt="Stylist adjusting a red hood on a model" loading="lazy"><span class="lbl">Styling</span></button>
-          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/bie-studio.jpg" data-cap="Born in Exile — behind the scenes"><img src="m/bie-studio.jpg" alt="The crew, rails and model in the white studio" loading="lazy"><span class="lbl">Behind the scenes</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-pink.jpg" data-cap="Born in Exile — barbed-wire denim"><img src="m/bie-pink.jpg" alt="Model in a pink top and barbed-wire print jeans" loading="lazy"><span class="lbl">Lookbook</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-coat.jpg" data-cap="Born in Exile — lookbook"><img src="m/bie-coat.jpg" srcset="m/sm/bie-coat.jpg 600w, m/bie-coat.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Model in a long black leather coat between two standing panels" loading="lazy"><span class="lbl">Lookbook</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-styling.jpg" data-cap="Born in Exile — styling on set"><img src="m/bie-styling.jpg" srcset="m/sm/bie-styling.jpg 600w, m/bie-styling.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Stylist adjusting a red hood on a model" loading="lazy"><span class="lbl">Styling</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/bie-studio.jpg" data-cap="Born in Exile — behind the scenes"><img src="m/bie-studio.jpg" srcset="m/sm/bie-studio.jpg 600w, m/bie-studio.jpg 1200w" sizes="(max-width:600px) 92vw, 39vw" alt="The crew, rails and model in the white studio" loading="lazy"><span class="lbl">Behind the scenes</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bie-pink.jpg" data-cap="Born in Exile — barbed-wire denim"><img src="m/bie-pink.jpg" srcset="m/sm/bie-pink.jpg 600w, m/bie-pink.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Model in a pink top and barbed-wire print jeans" loading="lazy"><span class="lbl">Lookbook</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-hood.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-hood.jpg" alt="Model in a red Born in Exile scarf worn as a hood" loading="lazy"><span class="lbl">DFW backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-sequin.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-sequin.jpg" alt="Model in a bronze sequin top having final touches backstage" loading="lazy"><span class="lbl">DFW backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-blazer.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-blazer.jpg" alt="Model in a sparkling black blazer and barbed-wire necklace" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-hood.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-hood.jpg" srcset="m/sm/dfw-hood.jpg 600w, m/dfw-hood.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in a red Born in Exile scarf worn as a hood" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-sequin.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-sequin.jpg" srcset="m/sm/dfw-sequin.jpg 600w, m/dfw-sequin.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in a bronze sequin top having final touches backstage" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-blazer.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-blazer.jpg" srcset="m/sm/dfw-blazer.jpg 600w, m/dfw-blazer.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in a sparkling black blazer and barbed-wire necklace" loading="lazy"><span class="lbl">DFW backstage</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-white.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-white.jpg" alt="Model in a draped white dress looking over her shoulder" loading="lazy"><span class="lbl">DFW backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-suit.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-suit.jpg" alt="Model in an open black tuxedo jacket and barbed-wire chain" loading="lazy"><span class="lbl">DFW backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-varsity.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-varsity.jpg" alt="Model in a navy and white varsity jacket with Arabic script" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-white.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-white.jpg" srcset="m/sm/dfw-white.jpg 600w, m/dfw-white.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in a draped white dress looking over her shoulder" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-suit.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-suit.jpg" srcset="m/sm/dfw-suit.jpg 600w, m/dfw-suit.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in an open black tuxedo jacket and barbed-wire chain" loading="lazy"><span class="lbl">DFW backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dfw-varsity.jpg" data-cap="Born in Exile — Dubai Fashion Week"><img src="m/dfw-varsity.jpg" srcset="m/sm/dfw-varsity.jpg 600w, m/dfw-varsity.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="Model in a navy and white varsity jacket with Arabic script" loading="lazy"><span class="lbl">DFW backstage</span></button>
         </div>
       </div>
     </article>
@@ -635,14 +643,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-hug.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-hug.jpg" alt="Guest in crushed velvet hugging a giant Tabasco bottle next to a neon sign" loading="lazy"><span class="lbl">Guests</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-hug.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-hug.jpg" srcset="m/sm/tabasco-hug.jpg 600w, m/tabasco-hug.jpg 1067w" sizes="(max-width:600px) 45vw, 29vw" alt="Guest in crushed velvet hugging a giant Tabasco bottle next to a neon sign" loading="lazy"><span class="lbl">Guests</span></button>
           <button class="cell vid p" style="--ar:0.8" data-type="vid" data-src="m/tabasco-full.mp4" data-cap="Tabasco × Chef Halawa — event film"><video src="m/tabasco-full-prev.mp4" data-full="m/tabasco-full.mp4" poster="m/tabasco-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Event film</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-chef.jpg" data-cap="Tabasco × Chef Halawa — the chef"><img src="m/tabasco-chef.jpg" alt="Chef Halawa in his whites serving pastries with tongs in the kitchen" loading="lazy"><span class="lbl">The chef</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-chef.jpg" data-cap="Tabasco × Chef Halawa — the chef"><img src="m/tabasco-chef.jpg" srcset="m/sm/tabasco-chef.jpg 600w, m/tabasco-chef.jpg 1067w" sizes="(max-width:600px) 45vw, 29vw" alt="Chef Halawa in his whites serving pastries with tongs in the kitchen" loading="lazy"><span class="lbl">The chef</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-bottles.jpg" data-cap="Tabasco × Chef Halawa — the range"><img src="m/tabasco-bottles.jpg" alt="Tabasco Sriracha, Sweet Chili, Salsa Picante and Pepper Sauce bottles on a white plinth" loading="lazy"><span class="lbl">The range</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-drip.jpg" data-cap="Tabasco × Chef Halawa — drip society"><img src="m/tabasco-drip.jpg" alt="Chef Halawa smiling behind two loaded platters under the red Drip Society neon" loading="lazy"><span class="lbl">Drip Society</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-denim.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-denim.jpg" alt="Guest in a denim set laughing beside a giant Tabasco bottle and the Tabasco logo" loading="lazy"><span class="lbl">Guests</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-bottles.jpg" data-cap="Tabasco × Chef Halawa — the range"><img src="m/tabasco-bottles.jpg" srcset="m/sm/tabasco-bottles.jpg 600w, m/tabasco-bottles.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Tabasco Sriracha, Sweet Chili, Salsa Picante and Pepper Sauce bottles on a white plinth" loading="lazy"><span class="lbl">The range</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-drip.jpg" data-cap="Tabasco × Chef Halawa — drip society"><img src="m/tabasco-drip.jpg" srcset="m/sm/tabasco-drip.jpg 600w, m/tabasco-drip.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Chef Halawa smiling behind two loaded platters under the red Drip Society neon" loading="lazy"><span class="lbl">Drip Society</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/tabasco-denim.jpg" data-cap="Tabasco × Chef Halawa — guests"><img src="m/tabasco-denim.jpg" srcset="m/sm/tabasco-denim.jpg 600w, m/tabasco-denim.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Guest in a denim set laughing beside a giant Tabasco bottle and the Tabasco logo" loading="lazy"><span class="lbl">Guests</span></button>
         </div>
       </div>
     </article>
@@ -656,16 +664,16 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-01.jpg" data-cap="Emergency Room — look"><img src="m/er-01.jpg" alt="Model in an embroidered patchwork shirt and blue sunglasses" loading="lazy"><span class="lbl">Look</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-06.jpg" data-cap="Emergency Room — backstage"><img src="m/er-06.jpg" alt="Blonde model in a lace fringe dress during hair and styling" loading="lazy"><span class="lbl">Backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-04.jpg" data-cap="Emergency Room — look"><img src="m/er-04.jpg" alt="Model in an embroidered dress with a silk headscarf" loading="lazy"><span class="lbl">Look</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-03.jpg" data-cap="Emergency Room — detail"><img src="m/er-03.jpg" alt="Lace socks and Timberland boots under a lace hem" loading="lazy"><span class="lbl">Detail</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-01.jpg" data-cap="Emergency Room — look"><img src="m/er-01.jpg" srcset="m/sm/er-01.jpg 600w, m/er-01.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in an embroidered patchwork shirt and blue sunglasses" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-06.jpg" data-cap="Emergency Room — backstage"><img src="m/er-06.jpg" srcset="m/sm/er-06.jpg 600w, m/er-06.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Blonde model in a lace fringe dress during hair and styling" loading="lazy"><span class="lbl">Backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-04.jpg" data-cap="Emergency Room — look"><img src="m/er-04.jpg" srcset="m/sm/er-04.jpg 600w, m/er-04.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in an embroidered dress with a silk headscarf" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-03.jpg" data-cap="Emergency Room — detail"><img src="m/er-03.jpg" srcset="m/sm/er-03.jpg 600w, m/er-03.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Lace socks and Timberland boots under a lace hem" loading="lazy"><span class="lbl">Detail</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-11.jpg" data-cap="Emergency Room — backstage"><img src="m/er-11.jpg" alt="Model in a tasselled patchwork jacket beside the line-up board" loading="lazy"><span class="lbl">Backstage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-08.jpg" data-cap="Emergency Room — look"><img src="m/er-08.jpg" alt="Model in a grey printed dress with a bright silk scarf" loading="lazy"><span class="lbl">Look</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-12.jpg" data-cap="Emergency Room — final bow"><img src="m/er-12.jpg" alt="The designer hugging the team after the show" loading="lazy"><span class="lbl">Final bow</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-07.jpg" data-cap="Emergency Room — look"><img src="m/er-07.jpg" alt="Model in a black turtleneck, pearl collar and zigzag trousers" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-11.jpg" data-cap="Emergency Room — backstage"><img src="m/er-11.jpg" srcset="m/sm/er-11.jpg 600w, m/er-11.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in a tasselled patchwork jacket beside the line-up board" loading="lazy"><span class="lbl">Backstage</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-08.jpg" data-cap="Emergency Room — look"><img src="m/er-08.jpg" srcset="m/sm/er-08.jpg 600w, m/er-08.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in a grey printed dress with a bright silk scarf" loading="lazy"><span class="lbl">Look</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-12.jpg" data-cap="Emergency Room — final bow"><img src="m/er-12.jpg" srcset="m/sm/er-12.jpg 600w, m/er-12.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="The designer hugging the team after the show" loading="lazy"><span class="lbl">Final bow</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/er-07.jpg" data-cap="Emergency Room — look"><img src="m/er-07.jpg" srcset="m/sm/er-07.jpg 600w, m/er-07.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in a black turtleneck, pearl collar and zigzag trousers" loading="lazy"><span class="lbl">Look</span></button>
         </div>
       </div>
     </article>
@@ -679,9 +687,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-car.jpg" data-cap="Utopia — campaign"><img src="m/utopia-car.jpg" alt="Model in a green Utopia jersey on the back seat of a vintage car with a football" loading="lazy"><span class="lbl">Campaign</span></button>
-          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/utopia-carrom.jpg" data-cap="Utopia — campaign"><img src="m/utopia-carrom.jpg" alt="Top-down shot of two models playing carrom on a Persian rug beside an oud and a cassette player" loading="lazy"><span class="lbl">Campaign</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-rolls.jpg" data-cap="Utopia — campaign"><img src="m/utopia-rolls.jpg" alt="Two models in embroidered Utopia shirts posing by a green Rolls-Royce" loading="lazy"><span class="lbl">Campaign</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-car.jpg" data-cap="Utopia — campaign"><img src="m/utopia-car.jpg" srcset="m/sm/utopia-car.jpg 600w, m/utopia-car.jpg 1067w" sizes="(max-width:600px) 45vw, 22vw" alt="Model in a green Utopia jersey on the back seat of a vintage car with a football" loading="lazy"><span class="lbl">Campaign</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/utopia-carrom.jpg" data-cap="Utopia — campaign"><img src="m/utopia-carrom.jpg" srcset="m/sm/utopia-carrom.jpg 600w, m/utopia-carrom.jpg 1200w" sizes="(max-width:600px) 92vw, 49vw" alt="Top-down shot of two models playing carrom on a Persian rug beside an oud and a cassette player" loading="lazy"><span class="lbl">Campaign</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/utopia-rolls.jpg" data-cap="Utopia — campaign"><img src="m/utopia-rolls.jpg" srcset="m/sm/utopia-rolls.jpg 600w, m/utopia-rolls.jpg 1067w" sizes="(max-width:600px) 45vw, 22vw" alt="Two models in embroidered Utopia shirts posing by a green Rolls-Royce" loading="lazy"><span class="lbl">Campaign</span></button>
         </div>
       </div>
     </article>
@@ -696,12 +704,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/nightlife-full.mp4" data-cap="Nightlife — club film"><video src="m/nightlife-full-prev.mp4" data-full="m/nightlife-full.mp4" poster="m/nightlife.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Club film</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dj-hi.jpg" data-cap="DJ set"><img src="m/dj-hi.jpg" alt="DJ in a keffiyeh under red light and a neon skull" loading="lazy"><span class="lbl">DJ set</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — dj set"><img src="m/bodega-dj.jpg" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dj-hi.jpg" data-cap="DJ set"><img src="m/dj-hi.jpg" srcset="m/sm/dj-hi.jpg 600w, m/dj-hi.jpg 1067w" sizes="(max-width:600px) 45vw, 32vw" alt="DJ in a keffiyeh under red light and a neon skull" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — dj set"><img src="m/bodega-dj.jpg" srcset="m/sm/bodega-dj.jpg 600w, m/bodega-dj.jpg 1067w" sizes="(max-width:600px) 45vw, 32vw" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
         </div>
         <div class="row">
-          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/crowd.jpg" data-cap="The crowd"><img src="m/crowd.jpg" alt="Packed crowd seen from above" loading="lazy"><span class="lbl">The crowd</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-booth.jpg" data-cap="Bodega — the booth"><img src="m/bodega-booth.jpg" alt="Two DJs behind the decks at Bodega with the crowd dancing in front" loading="lazy"><span class="lbl">The booth</span></button>
+          <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/crowd.jpg" data-cap="The crowd"><img src="m/crowd.jpg" srcset="m/sm/crowd.jpg 600w, m/crowd.jpg 1200w" sizes="(max-width:600px) 92vw, 64vw" alt="Packed crowd seen from above" loading="lazy"><span class="lbl">The crowd</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-booth.jpg" data-cap="Bodega — the booth"><img src="m/bodega-booth.jpg" srcset="m/sm/bodega-booth.jpg 600w, m/bodega-booth.jpg 1067w" sizes="(max-width:600px) 45vw, 29vw" alt="Two DJs behind the decks at Bodega with the crowd dancing in front" loading="lazy"><span class="lbl">The booth</span></button>
         </div>
       </div>
     </article>
@@ -715,15 +723,15 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-01.jpg" data-cap="Studio shoot"><img src="m/studio-01.jpg" alt="Model in a sequin dress kneeling in the open door of a blue car" loading="lazy"><span class="lbl">Studio shoot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-09.jpg" data-cap="Studio shoot"><img src="m/studio-09.jpg" alt="Model lying among white pillows holding red heels" loading="lazy"><span class="lbl">Studio shoot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-07.jpg" data-cap="Studio shoot"><img src="m/studio-07.jpg" alt="Model in black lace and sunglasses with arms crossed" loading="lazy"><span class="lbl">Studio shoot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-11.jpg" data-cap="Studio shoot"><img src="m/studio-11.jpg" alt="Model in sunglasses and a gold chain sitting in white bedding" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-01.jpg" data-cap="Studio shoot"><img src="m/studio-01.jpg" srcset="m/sm/studio-01.jpg 600w, m/studio-01.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in a sequin dress kneeling in the open door of a blue car" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-09.jpg" data-cap="Studio shoot"><img src="m/studio-09.jpg" srcset="m/sm/studio-09.jpg 600w, m/studio-09.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model lying among white pillows holding red heels" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-07.jpg" data-cap="Studio shoot"><img src="m/studio-07.jpg" srcset="m/sm/studio-07.jpg 600w, m/studio-07.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in black lace and sunglasses with arms crossed" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-11.jpg" data-cap="Studio shoot"><img src="m/studio-11.jpg" srcset="m/sm/studio-11.jpg 600w, m/studio-11.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Model in sunglasses and a gold chain sitting in white bedding" loading="lazy"><span class="lbl">Studio shoot</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-02.jpg" data-cap="Studio shoot"><img src="m/studio-02.jpg" alt="Model in a leather jacket holding a gold heel to her ear" loading="lazy"><span class="lbl">Studio shoot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-05.jpg" data-cap="Studio shoot"><img src="m/studio-05.jpg" alt="Model wrapped in white sheets, shot from above" loading="lazy"><span class="lbl">Studio shoot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-06.jpg" data-cap="Studio shoot"><img src="m/studio-06.jpg" alt="Model on a white bed beside a studio ladder" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-02.jpg" data-cap="Studio shoot"><img src="m/studio-02.jpg" srcset="m/sm/studio-02.jpg 600w, m/studio-02.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model in a leather jacket holding a gold heel to her ear" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-05.jpg" data-cap="Studio shoot"><img src="m/studio-05.jpg" srcset="m/sm/studio-05.jpg 600w, m/studio-05.jpg 1067w" sizes="(max-width:600px) 45vw, 31vw" alt="Model wrapped in white sheets, shot from above" loading="lazy"><span class="lbl">Studio shoot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/studio-06.jpg" data-cap="Studio shoot"><img src="m/studio-06.jpg" srcset="m/sm/studio-06.jpg 600w, m/studio-06.jpg 1067w" sizes="(max-width:600px) 92vw, 31vw" alt="Model on a white bed beside a studio ladder" loading="lazy"><span class="lbl">Studio shoot</span></button>
         </div>
       </div>
     </article>
@@ -737,11 +745,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-01.jpg" data-cap="Studio portraits"><img src="m/dark-01.jpg" alt="Man in a graphic long-sleeve top holding a basketball to his head" loading="lazy"><span class="lbl">Portrait</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-04.jpg" data-cap="Studio portraits"><img src="m/dark-04.jpg" alt="Man in a red hockey jersey and trucker cap adjusting his glasses" loading="lazy"><span class="lbl">Portrait</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-03.jpg" data-cap="Studio portraits"><img src="m/dark-03.jpg" alt="Man with braids holding a cross chain in low light" loading="lazy"><span class="lbl">Portrait</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-02.jpg" data-cap="Studio portraits"><img src="m/dark-02.jpg" alt="Man in a blue Arabic-print tee under a large softbox" loading="lazy"><span class="lbl">Portrait</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-05.jpg" data-cap="Studio portraits"><img src="m/dark-05.jpg" alt="Man in a washed zip hoodie looking down at his rings" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-01.jpg" data-cap="Studio portraits"><img src="m/dark-01.jpg" srcset="m/sm/dark-01.jpg 600w, m/dark-01.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Man in a graphic long-sleeve top holding a basketball to his head" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-04.jpg" data-cap="Studio portraits"><img src="m/dark-04.jpg" srcset="m/sm/dark-04.jpg 600w, m/dark-04.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Man in a red hockey jersey and trucker cap adjusting his glasses" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-03.jpg" data-cap="Studio portraits"><img src="m/dark-03.jpg" srcset="m/sm/dark-03.jpg 600w, m/dark-03.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Man with braids holding a cross chain in low light" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-02.jpg" data-cap="Studio portraits"><img src="m/dark-02.jpg" srcset="m/sm/dark-02.jpg 600w, m/dark-02.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Man in a blue Arabic-print tee under a large softbox" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dark-05.jpg" data-cap="Studio portraits"><img src="m/dark-05.jpg" srcset="m/sm/dark-05.jpg 600w, m/dark-05.jpg 1067w" sizes="(max-width:600px) 92vw, 18vw" alt="Man in a washed zip hoodie looking down at his rings" loading="lazy"><span class="lbl">Portrait</span></button>
         </div>
       </div>
     </article>
@@ -756,12 +764,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       <div class="reel">
         <div class="row">
           <button class="cell p" style="--ar:0.666" data-type="photo" data-src="m/editorial-white.jpg" data-cap="Studio editorial"><img src="m/editorial-white.jpg" alt="Woman lying on white sheets holding heels" loading="lazy"><span class="lbl">Studio</span></button>
-          <button class="cell l" style="--ar:1.498" data-type="photo" data-src="m/portrait-palms.jpg" data-cap="Portrait"><img src="m/portrait-palms.jpg" alt="Man in sunglasses among palm leaves" loading="lazy"><span class="lbl">Portrait</span></button>
+          <button class="cell l" style="--ar:1.498" data-type="photo" data-src="m/portrait-palms.jpg" data-cap="Portrait"><img src="m/portrait-palms.jpg" srcset="m/sm/portrait-palms.jpg 600w, m/portrait-palms.jpg 1200w" sizes="(max-width:600px) 92vw, 49vw" alt="Man in sunglasses among palm leaves" loading="lazy"><span class="lbl">Portrait</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/suit-sneakers.jpg" data-cap="Editorial — suit &amp; sneakers"><img src="m/suit-sneakers.jpg" alt="Man in a suit and hat holding sneakers against red wallpaper" loading="lazy"><span class="lbl">Lookbook</span></button>
         </div>
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dancers.jpg" data-cap="Live event"><img src="m/dancers.jpg" alt="Two people dancing behind the DJ booth" loading="lazy" style="object-position:50% 35%"><span class="lbl">Live event</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dance-floor.jpg" data-cap="Dance floor"><img src="m/dance-floor.jpg" alt="Couple dancing on a crowded floor" loading="lazy" style="object-position:50% 30%"><span class="lbl">Dance floor</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dancers.jpg" data-cap="Live event"><img src="m/dancers.jpg" srcset="m/sm/dancers.jpg 600w, m/dancers.jpg 1067w" sizes="(max-width:600px) 45vw, 29vw" alt="Two people dancing behind the DJ booth" loading="lazy" style="object-position:50% 35%"><span class="lbl">Live event</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dance-floor.jpg" data-cap="Dance floor"><img src="m/dance-floor.jpg" srcset="m/sm/dance-floor.jpg 600w, m/dance-floor.jpg 800w" sizes="(max-width:600px) 45vw, 30vw" alt="Couple dancing on a crowded floor" loading="lazy" style="object-position:50% 30%"><span class="lbl">Dance floor</span></button>
           <button class="cell p" style="--ar:0.749" data-type="photo" data-src="m/love-yourself.jpg" data-cap="Event"><img src="m/love-yourself.jpg" alt="Crowd at an outdoor event with a Love Yourself sign" loading="lazy" style="object-position:50% 30%"><span class="lbl">Event</span></button>
         </div>
       </div>
@@ -772,7 +780,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 <section id="about">
   <div class="wrap about">
     <figure>
-      <img src="m/about-zeyad-2.jpg" alt="Zeyad Erekat in sunglasses leaning on an ironing board in a laundry shop, black and white" loading="lazy">
+      <img src="m/about-zeyad-2.jpg" srcset="m/sm/about-zeyad-2.jpg 600w, m/about-zeyad-2.jpg 1200w" sizes="(max-width:600px) 92vw, 40vw" alt="Zeyad Erekat in sunglasses leaning on an ironing board in a laundry shop, black and white" loading="lazy">
       <figcaption class="mono"><span class="dot"></span>Behind the camera</figcaption>
     </figure>
     <div class="txt">
@@ -789,7 +797,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   <div class="wrap team">
     <div class="eyebrow mono">The team</div>
     <div class="member">
-      <img src="m/team-mahmoud.jpg" alt="Mahmoud Awada seated on a chair in the studio, black and white" loading="lazy">
+      <img src="m/team-mahmoud.jpg" srcset="m/sm/team-mahmoud.jpg 600w, m/team-mahmoud.jpg 1000w" sizes="(max-width:600px) 36vw, 18vw" alt="Mahmoud Awada seated on a chair in the studio, black and white" loading="lazy">
       <div>
         <span class="role">Business Manager</span>
         <h3>MAHMOUD AWADA</h3>
@@ -818,8 +826,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
     <h2 class="h2" id="svcH">SERV<span class="red">ICES</span></h2>
     <div class="svc">
       <div class="card"><img src="m/dj-booth.jpg" alt="DJ playing behind the decks" loading="lazy"><div><span class="mono">01</span><h3>VIDEOGRAPHY</h3><p>Bold, raw and timeless films for fashion, streetwear, music and events.</p><ul><li>Campaign and brand films</li><li>Event and club coverage</li><li>Reels and BTS</li></ul></div></div>
-      <div class="card"><img src="m/skull-fisheye.jpg" alt="Fisheye shot of a neon skull over a crowd" loading="lazy" style="object-position:50% 30%"><div><span class="mono">02</span><h3>EDIT &amp; POST</h3><p>From clean cuts to full edits, finished in the signature VHS look.</p><ul><li>Editing and colour grading</li><li>Social cut-downs, 9:16 and 4:5</li><li>Retro and VHS finishing</li></ul></div></div>
-      <div class="card"><img src="m/foosball.jpg" alt="Hooded figures at a foosball table under orange light" loading="lazy"><div><span class="mono">03</span><h3>PHOTOGRAPHY</h3><p>Fashion, street, portrait and event photography.</p><ul><li>Lookbooks and editorials</li><li>Launches and activations</li><li>Portraits</li></ul></div></div>
+      <div class="card"><img src="m/skull-fisheye.jpg" srcset="m/sm/skull-fisheye.jpg 600w, m/skull-fisheye.jpg 900w" sizes="(max-width:600px) 92vw, 30vw" alt="Fisheye shot of a neon skull over a crowd" loading="lazy" style="object-position:50% 30%"><div><span class="mono">02</span><h3>EDIT &amp; POST</h3><p>From clean cuts to full edits, finished in the signature VHS look.</p><ul><li>Editing and colour grading</li><li>Social cut-downs, 9:16 and 4:5</li><li>Retro and VHS finishing</li></ul></div></div>
+      <div class="card"><img src="m/foosball.jpg" srcset="m/sm/foosball.jpg 600w, m/foosball.jpg 1067w" sizes="(max-width:600px) 92vw, 30vw" alt="Hooded figures at a foosball table under orange light" loading="lazy"><div><span class="mono">03</span><h3>PHOTOGRAPHY</h3><p>Fashion, street, portrait and event photography.</p><ul><li>Lookbooks and editorials</li><li>Launches and activations</li><li>Portraits</li></ul></div></div>
     </div>
     <div class="eyebrow mono how-title">How it works</div>
     <div class="steps-how">
@@ -893,11 +901,26 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 
 <script>
 (function(){
+  var small = (window.matchMedia && matchMedia('(max-width:820px)').matches) || (navigator.connection && navigator.connection.saveData);
+  var light = ['favela-full','ferrari-film','film-intro','ghana-bts-full','ghana-saif','iniesta-bts','iniesta-film','kaytranada-full','kindness-full','night-shoot-full','nightlife-full','sole-film-full','tabasco-full'];
+  function lite(u){ if(!small||!u) return u; var m=u.match(/^m\/(.+)\.mp4$/); return (m && light.indexOf(m[1])>-1) ? 'm/'+m[1]+'-m.mp4' : u; }
+  document.querySelectorAll('video[data-full]').forEach(function(v){ v.setAttribute('data-full', lite(v.getAttribute('data-full'))); });
+  document.querySelectorAll('.cell[data-type="vid"]').forEach(function(c){ c.setAttribute('data-src', lite(c.getAttribute('data-src'))); });
+  var hv=document.getElementById('heroVid');
+  if(hv && hv.dataset.src){ hv.src=lite(hv.dataset.src); hv.preload='auto'; }
+})();
+</script>
+<script>
+(function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hv = document.getElementById('heroVid');
   if (reduce && hv) { hv.removeAttribute('autoplay'); hv.pause(); }
   else if (hv) { var p = hv.play(); if (p && p.catch) p.catch(function(){}); }
 
+  // availability badge: always shows next month
+  var am=document.getElementById('availM');
+  if(am){ var M=['January','February','March','April','May','June','July','August','September','October','November','December']; am.textContent=M[(new Date().getMonth()+1)%12]; }
+  document.getElementById('avail') && document.getElementById('avail').addEventListener('click',function(){ if(window.gtag) gtag('event','avail_badge_click'); });
   // running timecode
   var tc = document.getElementById('tc'), t0 = Date.now();
   function pad(n){return (n<10?'0':'')+n}
