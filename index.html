@@ -1020,12 +1020,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ st.textContent='That email doesn\'t look right. Please check it.'; st.classList.add('err'); return; }
       if(ef._honey.value){ return; }
       sb.disabled=true; st.textContent='Sending\u2026';
-      var data={name:n,phone:ph,email:em,service:ef.service.value,message:ef.message.value.trim(),_subject:'New enquiry from zerekat.com: '+n,_template:'table',_captcha:'false'};
+      var data={access_key:'5315afc5-9722-48cf-9a37-4271e33eeec0',subject:'New enquiry from zerekat.com: '+n,from_name:'zerekat.com',name:n,phone:ph,email:em,service:ef.service.value,message:ef.message.value.trim()||'(no message)',botcheck:''};
       var body='Hi Zeyad, I want to book a shoot.\n\nName: '+n+'\nPhone: '+ph+'\nEmail: '+em+'\nService: '+data.service+(data.message?'\n\n'+data.message:'');
       var wa='https://wa.me/971582229703?text='+encodeURIComponent(body);
       var ml='mailto:hello@zerekat.com?subject='+encodeURIComponent('Project enquiry: '+n)+'&body='+encodeURIComponent(body);
       var ctl=window.AbortController?new AbortController():null, tm=setTimeout(function(){ if(ctl) ctl.abort(); },9000);
-      fetch('https://formsubmit.co/ajax/hello@zerekat.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl?ctl.signal:undefined})
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl?ctl.signal:undefined})
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
         .then(function(j){ if(j && (j.success===false||j.success==='false')) throw new Error('fail'); ef.reset(); st.textContent='Thanks, '+n.split(' ')[0]+'. Your enquiry is sent. I\'ll be in touch soon.'; st.classList.add('ok'); if(window.gtag) gtag('event','generate_lead',{method:'enquiry_form'}); })
         .catch(function(){
