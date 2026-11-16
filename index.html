@@ -333,6 +333,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 .who{display:block;font-weight:700;color:var(--fg);margin-bottom:6px}
 .hero .shot{flex-basis:100%;margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg);opacity:.85;max-width:none}
 .hero .shot b{color:var(--red);font-weight:700}
+/* project names rise in letter by letter; REC dot; counting stats */
+.phead h3.split .w{display:inline-block;white-space:nowrap;overflow:hidden;vertical-align:top;padding:.1em .04em 0 0;margin-top:-.1em}
+.phead h3.split .c{display:inline-block;transform:translateY(108%);transition:transform .75s cubic-bezier(.2,.75,.2,1);transition-delay:calc(var(--i)*30ms)}
+.phead h3.split.go .c{transform:none}
+.phead>span.mono::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);margin-right:9px;vertical-align:1px;animation:recBlink 1.3s steps(1) infinite}
+@keyframes recBlink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+@media (prefers-reduced-motion:reduce){.phead>span.mono::before{animation:none}}
 </style>
 <style>html,body{margin:0}</style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSPQ6ZV4N5"></script>
@@ -542,11 +549,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
       </div>
       <div class="reel">
         <div class="row">
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-drive.jpg" data-cap="Dubai Basketball x adidas — the drive"><img src="m/dbb-drive.jpg" srcset="m/sm/dbb-drive.jpg 600w, m/dbb-drive.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball guard in a white adidas kit dribbling past the courtside boards" loading="lazy"><span class="lbl">The drive</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-shot.jpg" data-cap="Dubai Basketball x adidas — the shot"><img src="m/dbb-shot.jpg" srcset="m/sm/dbb-shot.jpg 600w, m/dbb-shot.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball player rising for a shot under the shot clock, seen from behind the crowd" loading="lazy"><span class="lbl">The shot</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-dunk.jpg" data-cap="Dubai Basketball x adidas — the dunk"><img src="m/dbb-dunk.jpg" srcset="m/sm/dbb-dunk.jpg 600w, m/dbb-dunk.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 22 hanging on the rim after a dunk" loading="lazy"><span class="lbl">The dunk</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-duel.jpg" data-cap="Dubai Basketball x adidas — one on one"><img src="m/dbb-duel.jpg" srcset="m/sm/dbb-duel.jpg 600w, m/dbb-duel.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 1 facing up against Teodosić of Crvena Zvezda" loading="lazy"><span class="lbl">One on one</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-mason.jpg" data-cap="Dubai Basketball x adidas — between plays"><img src="m/dbb-mason.jpg" srcset="m/sm/dbb-mason.jpg 600w, m/dbb-mason.jpg 1067w" sizes="(max-width:600px) 92vw, 18vw" alt="Mason, number 1, standing hands on hips with his back to the camera" loading="lazy"><span class="lbl">Between plays</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-drive.jpg" data-cap="Dubai Basketball × adidas — the drive"><img src="m/dbb-drive.jpg" srcset="m/sm/dbb-drive.jpg 600w, m/dbb-drive.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball guard in a white adidas kit dribbling past the courtside boards" loading="lazy"><span class="lbl">The drive</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-shot.jpg" data-cap="Dubai Basketball × adidas — the shot"><img src="m/dbb-shot.jpg" srcset="m/sm/dbb-shot.jpg 600w, m/dbb-shot.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball player rising for a shot under the shot clock, seen from behind the crowd" loading="lazy"><span class="lbl">The shot</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-dunk.jpg" data-cap="Dubai Basketball × adidas — the dunk"><img src="m/dbb-dunk.jpg" srcset="m/sm/dbb-dunk.jpg 600w, m/dbb-dunk.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 22 hanging on the rim after a dunk" loading="lazy"><span class="lbl">The dunk</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-duel.jpg" data-cap="Dubai Basketball × adidas — one on one"><img src="m/dbb-duel.jpg" srcset="m/sm/dbb-duel.jpg 600w, m/dbb-duel.jpg 1067w" sizes="(max-width:600px) 45vw, 18vw" alt="Dubai Basketball number 1 facing up against Teodosić of Crvena Zvezda" loading="lazy"><span class="lbl">One on one</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dbb-mason.jpg" data-cap="Dubai Basketball × adidas — between plays"><img src="m/dbb-mason.jpg" srcset="m/sm/dbb-mason.jpg 600w, m/dbb-mason.jpg 1067w" sizes="(max-width:600px) 92vw, 18vw" alt="Mason, number 1, standing hands on hips with his back to the camera" loading="lazy"><span class="lbl">Between plays</span></button>
         </div>
       </div>
     </article>
@@ -633,7 +640,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <div class="row">
           <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/kaytranada-full.mp4" data-cap="Sole DXB — Kaytranada live"><video src="m/kaytranada-full-prev.mp4" data-full="m/kaytranada-full.mp4" poster="m/kaytranada-loop.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Kaytranada live</span></button>
           <button class="cell p" style="--ar:0.8" data-type="photo" data-src="m/sole-stage.jpg" data-cap="Sole DXB — main stage"><img src="m/sole-stage.jpg" srcset="m/sm/sole-stage.jpg 600w, m/sole-stage.jpg 1400w" sizes="(max-width:600px) 45vw, 27vw" alt="Sole DXB stage with light panels" loading="lazy"><span class="lbl">Main stage</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — dj set"><img src="m/sole-03.jpg" srcset="m/sm/sole-03.jpg 600w, m/sole-03.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-03.jpg" data-cap="Sole DXB — DJ set"><img src="m/sole-03.jpg" srcset="m/sm/sole-03.jpg 600w, m/sole-03.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="DJ in a green beanie and headphones playing in front of a black and white illustrated backdrop" loading="lazy"><span class="lbl">DJ set</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/sole-01.jpg" data-cap="Sole DXB — style"><img src="m/sole-01.jpg" srcset="m/sm/sole-01.jpg 600w, m/sole-01.jpg 1067w" sizes="(max-width:600px) 45vw, 23vw" alt="Two men in sunglasses, one in raw denim and one in a red racing jacket, in front of lit scaffolding" loading="lazy"><span class="lbl">Style</span></button>
         </div>
         <div class="row">
@@ -748,7 +755,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
         <div class="row">
           <button class="cell vid p" style="--ar:0.5625" data-type="vid" data-src="m/nightlife-full.mp4" data-cap="Nightlife — club film"><video src="m/nightlife-full-prev.mp4" data-full="m/nightlife-full.mp4" poster="m/nightlife.jpg" muted loop playsinline preload="none"></video><span class="snd" role="button" tabindex="0" aria-pressed="false">♪ Tap for sound</span><span class="lbl">Club film</span></button>
           <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/dj-hi.jpg" data-cap="DJ set"><img src="m/dj-hi.jpg" srcset="m/sm/dj-hi.jpg 600w, m/dj-hi.jpg 1067w" sizes="(max-width:600px) 45vw, 32vw" alt="DJ in a keffiyeh under red light and a neon skull" loading="lazy"><span class="lbl">DJ set</span></button>
-          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — dj set"><img src="m/bodega-dj.jpg" srcset="m/sm/bodega-dj.jpg 600w, m/bodega-dj.jpg 1067w" sizes="(max-width:600px) 45vw, 32vw" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
+          <button class="cell p" style="--ar:0.667" data-type="photo" data-src="m/bodega-dj.jpg" data-cap="Bodega — DJ set"><img src="m/bodega-dj.jpg" srcset="m/sm/bodega-dj.jpg 600w, m/bodega-dj.jpg 1067w" sizes="(max-width:600px) 45vw, 32vw" alt="DJ in a white corset with headphones, blowing a kiss under the Bodega neon sign" loading="lazy"><span class="lbl">DJ set</span></button>
         </div>
         <div class="row">
           <button class="cell l" style="--ar:1.499" data-type="photo" data-src="m/crowd.jpg" data-cap="The crowd"><img src="m/crowd.jpg" srcset="m/sm/crowd.jpg 600w, m/crowd.jpg 1200w" sizes="(max-width:600px) 92vw, 64vw" alt="Packed crowd seen from above" loading="lazy"><span class="lbl">The crowd</span></button>
@@ -1097,10 +1104,29 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   });
   // ===== ANIMATIONS =====
   if(!reduce){
+    // 0a. project names rise in letter by letter
+    if('IntersectionObserver' in window){
+      var nio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('go'); nio.unobserve(e.target);} }); },{threshold:.35});
+      document.querySelectorAll('.project .phead h3').forEach(function(h){
+        var txt=h.textContent, i=0; h.setAttribute('aria-label',txt); h.textContent='';
+        txt.split(' ').forEach(function(word,wi){
+          if(wi) h.appendChild(document.createTextNode(' '));
+          var w=document.createElement('span'); w.className='w'; w.setAttribute('aria-hidden','true');
+          word.split('').forEach(function(ch){ var c=document.createElement('span'); c.className='c'; c.style.setProperty('--i',i++); c.textContent=ch; w.appendChild(c); });
+          h.appendChild(w);
+        });
+        h.classList.add('split'); nio.observe(h);
+      });
+      // 0b. stats count up
+      var cio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting) return; cio.unobserve(e.target);
+        var b=e.target, m=/^(\d+)(.*)$/.exec(b.textContent.trim()); if(!m) return;
+        var end=+m[1], suf=m[2], t0=null, dur=1400;
+        function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/dur), v=Math.round(end*(1-Math.pow(1-p,3))); b.textContent=v+suf; if(p<1) requestAnimationFrame(step); }
+        b.textContent='0'+suf; requestAnimationFrame(step);
+      }); },{threshold:.6});
+      document.querySelectorAll('.stat b').forEach(function(b){ cio.observe(b); });
+    }
     // 1. title glitch on load + occasional tick
-    var h1=document.querySelector('.hero h1');
-    if(h1){ h1.classList.add('glitch');
-      setInterval(function(){ h1.classList.remove('tick'); void h1.offsetWidth; h1.classList.add('tick'); }, 7000); }
     // 2. scroll reveal
     if('IntersectionObserver' in window){
       var rvEls=[];
